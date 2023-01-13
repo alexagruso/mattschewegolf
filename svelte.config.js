@@ -1,18 +1,18 @@
 import adapter from "@sveltejs/adapter-auto";
+import preprocess from "svelte-preprocess";
+
 import path from "path";
 import { fileURLToPath } from "url";
 
 const scssPath = `${path.dirname(fileURLToPath(import.meta.url))}/src/scss`;
 
-const ignoreErrors = ["css-unused-selector"];
-
-/** @type {import("@sveltejs/kit").Config} */
+/** @type {import('@sveltejs/kit').Config} */
 const config = {
-    preprocess: {
+    preprocess: preprocess({
         scss: {
             prependData: `@import "${scssPath}/_global";`,
         },
-    },
+    }),
     kit: {
         adapter: adapter(),
         alias: {
@@ -24,7 +24,7 @@ const config = {
     onwarn: (warning, handler) => {
         const { code } = warning;
 
-        if (ignoreErrors.includes(code)) {
+        if (code === "css-unused-selector") {
             return;
         }
 
