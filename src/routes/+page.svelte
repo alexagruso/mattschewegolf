@@ -116,7 +116,7 @@
                 ><img src="youtubeicon.webp" alt="facebook icon" /></a
             >
         </div>
-        <h2>Send Me an Email!</h2>
+        <!-- <h2>Send Me an Email!</h2>
         <form on:submit|preventDefault={sendEmail}>
             <div class="col">
                 <input
@@ -155,7 +155,7 @@
                 />
                 <button class="submit" type="submit">Send Email</button>
             </div>
-        </form>
+        </form> -->
     </div>
 </section>
 
