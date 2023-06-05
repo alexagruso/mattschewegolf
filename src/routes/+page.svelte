@@ -165,7 +165,7 @@
         align-items: center;
 
         h1 {
-            font-size: 7.5rem;
+            font-size: clamp(2rem, 20vw, 8rem);
         }
 
         span {
@@ -196,7 +196,7 @@
         div {
             gap: 1rem;
 
-            max-width: 40vw;
+            max-width: clamp(20rem, 40vw, 100rem);
         }
 
         h2 {

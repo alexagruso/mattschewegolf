@@ -19,6 +19,7 @@
         border-bottom: 1px solid black;
         padding: 1.25rem 1rem;
         width: 99vw;
+        font-size: clamp(0.75rem, 2.5vw, 1.25rem);
 
         background-color: white;
     }
@@ -47,7 +48,6 @@
     @media (max-width: 520px) {
         nav {
             justify-content: center;
-            font-size: 0.5rem;
         }
 
         .login {
