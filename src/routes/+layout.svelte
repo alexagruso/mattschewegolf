@@ -1,6 +1,17 @@
 <script>
-  import Navbar from "@lib/components/Navbar.svelte";
+    import Footer from "@lib/components/Footer.svelte";
 </script>
 
-<Navbar />
-<slot />
+<main class="col">
+    <slot />
+    <Footer />
+</main>
+
+<style lang="scss">
+    main {
+        justify-content: space-between;
+        align-items: center;
+
+        min-height: 100vh;
+    }
+</style>

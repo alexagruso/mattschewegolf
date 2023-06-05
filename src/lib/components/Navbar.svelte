@@ -1,20 +1,26 @@
 <nav class="row">
-    <h1>Matt Schewe Golf</h1>
     <div class="row links">
-        <a>navbar</a>
-        <a>navbar</a>
-        <a>navbar</a>
-        <a>navbar</a>
+        <a href="#about">About Matt</a>
+        <a href="#prices">Prices</a>
+        <a href="#contact">Contact</a>
     </div>
-    <h2>Contact Info</h2>
+    <div class="login">
+        <a href="/login">Admin</a>
+    </div>
 </nav>
 
 <style lang="scss">
     nav {
+        position: sticky;
+        top: 0rem;
         justify-content: space-between;
         align-items: center;
 
-        padding: 1rem;
+        border-bottom: 1px solid black;
+        padding: 1.25rem 1rem;
+        min-width: 99vw;
+
+        background-color: white;
     }
 
     .links {
@@ -22,7 +28,19 @@
     }
 
     a {
-        color: gray;
+        transition: all 150ms;
+
+        padding: 0.5rem 1rem;
+
+        border-radius: 2rem;
+
+        color: darkslategray;
+        font-weight: 500;
         letter-spacing: 0.125rem;
+
+        &:hover {
+            color: white;
+            background-color: darkslategray;
+        }
     }
 </style>
