@@ -23,7 +23,7 @@
 
         border-top: 1px solid black;
         padding: 0.5rem;
-        min-width: 99vw;
+        width: 99vw;
     }
 
     .empty {
@@ -45,5 +45,11 @@
 
         text-decoration: underline;
         text-underline-offset: 0.25rem;
+    }
+
+    @media (max-width: 520px) {
+        footer {
+            font-size: 0.5rem;
+        }
     }
 </style>

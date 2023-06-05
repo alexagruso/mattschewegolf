@@ -18,7 +18,7 @@
 
         border-bottom: 1px solid black;
         padding: 1.25rem 1rem;
-        min-width: 99vw;
+        width: 99vw;
 
         background-color: white;
     }
@@ -41,6 +41,17 @@
         &:hover {
             color: white;
             background-color: darkslategray;
+        }
+    }
+
+    @media (max-width: 520px) {
+        nav {
+            justify-content: center;
+            font-size: 0.5rem;
+        }
+
+        .login {
+            display: none;
         }
     }
 </style>
