@@ -1,12 +1,10 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
-    import bcrypt from "bcrypt";
 
     let username: string;
     let password: string;
 
     const login = async () => {
-        console.log(`${username}: ${password}`);
         await goto("/");
     };
 </script>
@@ -20,6 +18,7 @@
             type="text"
             name="username"
             id="username"
+            placeholder="Username"
         />
         <input
             class="input"
@@ -27,6 +26,7 @@
             type="password"
             name="password"
             id="password"
+            placeholder="Password"
         />
         <button class="submit" type="submit">Log In</button>
     </form>

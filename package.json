@@ -21,6 +21,7 @@
   },
   "type": "module",
   "dependencies": {
+    "nodemailer": "^6.9.3",
     "sass": "^1.62.1"
   }
 }
