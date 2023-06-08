@@ -8,6 +8,7 @@
         <a href="/login">Admin</a>
     </div>
 </nav>
+<h2>(Notice: website under construction, content is subject to change)</h2>
 
 <style lang="scss">
     nav {
@@ -24,7 +25,15 @@
         background-color: white;
     }
 
+    h2 {
+        padding: 0.5rem;
+
+        font-size: 1rem;
+        text-align: center;
+    }
+
     .links {
+        align-items: center;
         gap: 1rem;
     }
 

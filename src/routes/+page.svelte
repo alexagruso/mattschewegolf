@@ -32,13 +32,13 @@
                 offer for everyone.
             </p>
             <p>
-                Matt has been nominated for several awards, including the South
-                Texas PGA teacher of the year award for the past 3 years. In
-                addition, he has taught many notable sports figures including
-                Penny Hardaway, Sam Cassell, and Vernon Maxwell, as well as NFL
-                player Lemuel Stinson. He has also taught famous actors like
-                Kurt Russel and Sally Field, and even the famous rapper
-                Scarface.
+                For the past 3 years, Matt has been nominated for the South
+                Texas PGA Teacher of the Year Award, ranking in the top 5 each
+                time. In addition, he has taught many notable sports figures
+                including Penny Hardaway, Sam Cassell, and Vernon Maxwell, as
+                well as NFL player Lemuel Stinson. He has also taught famous
+                actors like Kurt Russel and Sally Field, and even the famous
+                rapper Scarface.
             </p>
         </div>
     </div>
@@ -84,7 +84,7 @@
         <tr>
             <td>12 Full Hour Lessons</td>
             <td>--</td>
-            <td>$1200</td>
+            <td>$1300</td>
         </tr>
     </table>
     <span>* Lesson packages are non-refundable</span>
@@ -105,11 +105,11 @@
             <a href="https://twitter.com/mattschewegolf?lang=en" target="_blank"
                 ><img src="twittericon.webp" alt="facebook icon" /></a
             >
-            <!-- <a
+            <a
                 href="https://www.instagram.com/golfpromattschewepga/"
                 target="_blank"
                 ><img src="instaicon.webp" alt="facebook icon" /></a
-            > -->
+            >
             <a
                 href="https://www.youtube.com/channel/UCLMlW7yX0chNKrdTu3hC5NA"
                 target="_blank"
@@ -166,6 +166,7 @@
 
         h1 {
             font-size: clamp(2rem, 20vw, 8rem);
+            text-align: center;
         }
 
         span {
@@ -179,6 +180,7 @@
         min-width: 60vw;
 
         justify-content: center;
+        align-items: center;
 
         flex-grow: 1;
         gap: 0.75rem;
