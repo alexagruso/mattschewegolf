@@ -28,8 +28,8 @@
             <p>
                 Matt Schewe, director of instruction at the Pearland Golf Club
                 in Pearland, Texas, strives to help all of his students become
-                better golfers. From beginners to pros, he has something to
-                offer for everyone.
+                better golfers. From beginners to professionals, he has
+                something to offer for everyone.
             </p>
             <p>
                 For the past 3 years, Matt has been nominated for the South
