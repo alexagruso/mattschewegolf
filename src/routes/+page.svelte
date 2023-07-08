@@ -6,8 +6,6 @@
     let sender: string;
     let subject: string;
     let content: string;
-
-    const sendEmail = async () => {};
 </script>
 
 <Navbar />
