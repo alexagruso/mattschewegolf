@@ -6,6 +6,16 @@ const config = {
     compilerOptions: {
         accessors: true,
     },
+    kit: {
+        adapter: adapter(),
+        alias: {
+            "@components": "./src/components",
+            "@lib/*": "./src/lib/*",
+            "@schemas/*": "./src/lib/server/schemas/*",
+            "@scss/*": "./src/scss/*",
+            "@server/*": "./src/lib/server/*",
+        },
+    },
     onwarn: (warning, handler) => {
         const { code } = warning;
 
@@ -14,14 +24,6 @@ const config = {
         }
 
         handler(warning);
-    },
-    kit: {
-        adapter: adapter(),
-        alias: {
-            "@lib/*": "./src/lib/*",
-            "@server/*": "./src/lib/server/*",
-            "@schemas/*": "./src/lib/server/schemas/*",
-        },
     },
     preprocess: preprocess({
         scss: {

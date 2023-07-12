@@ -1,13 +1,13 @@
-import mongoose, { Model } from "mongoose";
+import mongoose, { Model, Schema } from "mongoose";
 
 interface BlogEntry {
     title: string;
     content: string;
 }
 
-const blogEntrySchema = new mongoose.Schema<BlogEntry>({
-    title: String,
-    content: String,
+const blogEntrySchema: Schema<BlogEntry> = new mongoose.Schema<BlogEntry>({
+    title: { type: String, required: true },
+    content: { type: String, required: true },
 });
 
 let BlogEntry: Model<BlogEntry>;

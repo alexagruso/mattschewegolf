@@ -1,13 +1,24 @@
-.row {
-    display: flex;
-    flex-direction: row;
+@import "./colors";
+@import "./layouts";
+
+@font-face {
+    font-family: "Lora";
+    src: url("fonts/Lora.ttf");
 }
 
-.col {
-    display: flex;
-    flex-direction: column;
-}
+:global {
+    * {
+        padding: 0rem;
+        border: none;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        margin: 0rem;
 
-h1 {
-    color: red;
+        font-family: "Lora";
+    }
+
+    html {
+        font-size: 1em;
+    }
 }

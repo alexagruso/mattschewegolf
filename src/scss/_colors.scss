@@ -1,0 +1,9 @@
+@for $i from 0 through 5 {
+    .primary-#{$i + 1} {
+        color: hsl(0, 0%, 6% + $i * 18%);
+    }
+
+    .accent-#{$i + 1} {
+        color: hsl(345, 100%, 12% + $i * 6%);
+    }
+}
