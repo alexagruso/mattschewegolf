@@ -1,21 +1,21 @@
 import mongoose, { Model, Schema } from "mongoose";
 
-interface BlogEntry {
+interface IBlogEntry {
     title: string;
     content: string;
 }
 
-const blogEntrySchema: Schema<BlogEntry> = new mongoose.Schema<BlogEntry>({
+const blogEntrySchema: Schema<IBlogEntry> = new mongoose.Schema<IBlogEntry>({
     title: { type: String, required: true },
     content: { type: String, required: true },
 });
 
-let BlogEntry: Model<BlogEntry>;
+let BlogEntry: Model<IBlogEntry>;
 
 try {
-    BlogEntry = mongoose.model<BlogEntry>("blogentries");
+    BlogEntry = mongoose.model<IBlogEntry>("blogentries");
 } catch (error) {
-    BlogEntry = mongoose.model<BlogEntry>("blogentries", blogEntrySchema);
+    BlogEntry = mongoose.model<IBlogEntry>("blogentries", blogEntrySchema);
 }
 
 export { BlogEntry };

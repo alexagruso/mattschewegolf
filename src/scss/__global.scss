@@ -1,5 +1,6 @@
 @import "./colors";
 @import "./layouts";
+@import "./typography";
 
 @font-face {
     font-family: "Lora";
@@ -16,9 +17,17 @@
         margin: 0rem;
 
         font-family: "Lora";
+        text-decoration: none;
     }
 
     html {
         font-size: 1em;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+
+        min-height: 100vh;
     }
 }
