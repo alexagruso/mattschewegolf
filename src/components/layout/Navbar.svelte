@@ -1,10 +1,14 @@
+<script>
+    import TextLink from "@components/interactive/TextLink.svelte";
+</script>
+
 <nav class="row">
     <div class="row logo" />
     <div class="row links">
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/lessons">Lessons</a>
-        <a href="/blog">Blog</a>
+        <TextLink href="/">Home</TextLink>
+        <TextLink href="/about">About</TextLink>
+        <TextLink href="/lessons">Lessons</TextLink>
+        <TextLink href="/blog">Blog</TextLink>
     </div>
 </nav>
 
@@ -20,20 +24,5 @@
 
     .links {
         gap: 1rem;
-    }
-
-    a {
-        transition: all 100ms;
-
-        border-radius: 1rem;
-        padding: 0.5rem 1rem;
-
-        font-size: $navbar-link;
-        text-transform: lowercase;
-        color: $primary-6;
-
-        &:hover {
-            background-color: $accent-3;
-        }
     }
 </style>
