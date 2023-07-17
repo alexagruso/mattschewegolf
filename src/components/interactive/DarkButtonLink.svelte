@@ -12,8 +12,8 @@
 
         transition: all 100ms;
 
-        border: 0.25rem solid $primary-6;
-        border-radius: 1rem;
+        border: 0.1875rem solid $primary-6;
+        border-radius: 1.125rem;
         padding: 0.5rem 2.5rem;
 
         background-color: $accent-2;

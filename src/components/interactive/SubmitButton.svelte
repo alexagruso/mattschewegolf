@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
     export let href: string;
 </script>
 
@@ -27,4 +27,4 @@
             color: $primary-6;
         }
     }
-</style>
+</style> -->
