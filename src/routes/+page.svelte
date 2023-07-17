@@ -1,10 +1,12 @@
 <script lang="ts">
+    import BlogSection from "@components/layout/BlogSection.svelte";
+    import HeroCard from "@components/layout/HeroCard.svelte";
+    import LessonCard from "@components/layout/LessonCard.svelte";
 </script>
 
-<h1>Email form test</h1>
+<HeroCard />
+<LessonCard />
+<BlogSection />
 
 <style lang="scss">
-    form * {
-        border: 1px solid black;
-    }
 </style>

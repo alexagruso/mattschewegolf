@@ -3,22 +3,24 @@
 </script>
 
 <div>
-    <a {href}><span><slot /></span></a>
+    <a {href}><slot /></a>
 </div>
 
 <style lang="scss">
     a {
+        display: block;
+
         transition: all 100ms;
 
         border-radius: 1rem;
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 2rem;
 
         font-size: $navbar-link;
         font-weight: 400;
         text-transform: lowercase;
 
         span {
-            color: $primary-6;
+            color: inherit;
         }
 
         &:hover {

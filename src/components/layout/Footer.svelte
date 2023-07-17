@@ -1,5 +1,5 @@
 <script>
-    import TextLink from "@components/interactive/TextLink.svelte";
+    import DarkButtonLink from "@components/interactive/DarkButtonLink.svelte";
 </script>
 
 <footer>
@@ -12,10 +12,8 @@
                 <span>Pearland, Texas</span>
             </div>
             <div class="col contact">
-                <div class="col phone-email">
-                    <span>(713) 291-8861</span>
-                    <span>matt@mattschewegolf.com</span>
-                </div>
+                <span>(713) 291-8861</span>
+                <span>matt@mattschewegolf.com</span>
                 <div class="row social">
                     <a href="https://twitter.com/mattschewegolf?lang=en" target="_blank">
                         <img src="images/footer/twitter.png" alt="twitter" />
@@ -30,12 +28,12 @@
                         <img src="images/footer/youtube.png" alt="youtube" />
                     </a>
                 </div>
-                <TextLink href="/lessons">Schedule A Lesson</TextLink>
+                <DarkButtonLink href="/lessons">Schedule A Lesson</DarkButtonLink>
             </div>
         </div>
         <div class="row center copyright">
             <span>Copyright © 2023 Matt Schewe. All Rights Reserved.</span>
-            <TextLink href="/login">Admin Login</TextLink>
+            <DarkButtonLink href="/login">Admin Login</DarkButtonLink>
         </div>
     </div>
 </footer>
