@@ -1,20 +1,38 @@
 <script>
+    import Hamburger from "@components/interactive/Hamburger.svelte";
     import HighlightLink from "@components/interactive/HighlightLink.svelte";
+
+    let show = false;
 </script>
 
-<nav class="row">
-    <div class="row logo">
-        <img src="images/navbar/pga.png" alt="pga logo" />
-        <div class="col text">
-            <span class="title">Matt Schewe</span>
-            <span class="subtitle">School of Golf</span>
+<nav class="col">
+    <div class="row hamburger" class:shadow={!show}>
+        <div class="icon">
+            <Hamburger bind:active={show} />
         </div>
     </div>
-    <div class="row links">
-        <HighlightLink href="/">Home</HighlightLink>
-        <HighlightLink href="/about">About</HighlightLink>
-        <HighlightLink href="/lessons">Lessons</HighlightLink>
-        <HighlightLink href="/blog">Blog</HighlightLink>
+    <div class="row content">
+        <div class="row logo">
+            <img src="images/navbar/pga.png" alt="pga logo" />
+            <div class="col text">
+                <span class="title">Matt Schewe</span>
+                <span class="subtitle">School of Golf</span>
+            </div>
+        </div>
+        <div class="row links" class:hide={!show}>
+            <div class="row link center">
+                <HighlightLink href="/">Home</HighlightLink>
+            </div>
+            <div class="row link center">
+                <HighlightLink href="/about">About</HighlightLink>
+            </div>
+            <div class="row link center">
+                <HighlightLink href="/lessons">Lessons</HighlightLink>
+            </div>
+            <div class="row link center">
+                <HighlightLink href="/blog">Blog</HighlightLink>
+            </div>
+        </div>
     </div>
 </nav>
 
@@ -27,24 +45,75 @@
 
         display: block;
 
-        justify-content: space-between;
-        align-items: center;
-
-        box-shadow: 0rem 0.125rem 0.25rem 0rem $primary-1;
-        padding: 0.5rem 12rem;
-
         background-color: $accent-2;
 
         color: $primary-6;
     }
 
+    .shadow {
+        box-shadow: 0rem 0.125rem 0.25rem 0rem $primary-1;
+    }
+
+    .hamburger {
+        justify-content: right;
+
+        display: none;
+
+        transition: all 150ms;
+
+        padding: 0.5rem;
+
+        @include tablet-and-below {
+            display: flex;
+        }
+    }
+
+    .content {
+        justify-content: space-between;
+        align-items: center;
+
+        position: relative;
+
+        padding: 0rem clamp(2rem, 10vw, 12rem);
+
+        @include tablet-and-below {
+            justify-content: center;
+        }
+    }
+
     .logo {
         align-items: center;
         gap: 1rem;
+
+        @include tablet-and-below {
+            display: none;
+        }
     }
 
     .links {
         gap: 1rem;
+
+        transition: all 150ms;
+
+        @include tablet-and-below {
+            position: absolute;
+            top: 0rem;
+            flex-direction: column;
+
+            opacity: 0.9;
+
+            box-shadow: 0rem 0.125rem 0.25rem 0rem $primary-1;
+            padding: 1rem 0rem;
+            width: 100%;
+
+            background-color: $accent-2;
+        }
+    }
+
+    .hide {
+        @include tablet-and-below {
+            top: -50vh;
+        }
     }
 
     .text {

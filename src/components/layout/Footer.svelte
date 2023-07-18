@@ -31,9 +31,9 @@
                 <DarkButtonLink href="/lessons">Schedule A Lesson</DarkButtonLink>
             </div>
         </div>
-        <div class="row center copyright">
+        <div class="row copyright">
             <span>Copyright © 2023 Matt Schewe. All Rights Reserved.</span>
-            <!-- <DarkButtonLink href="/login">Admin Login</DarkButtonLink> -->
+            <DarkButtonLink href="/login">Admin Login</DarkButtonLink>
         </div>
     </div>
 </footer>
@@ -43,33 +43,49 @@
         justify-content: space-between;
         align-items: center;
 
-        padding: 0rem 12rem;
+        padding: 0rem clamp(2rem, 10vw, 12rem);
 
         background-color: $accent-2;
 
         color: $primary-6;
+
+        @include tablet-and-below {
+            padding-bottom: 1rem;
+        }
     }
 
     .content {
         justify-content: space-between;
 
         padding: 1rem 0rem;
+
+        @include tablet-and-below {
+            flex-direction: column;
+
+            padding-bottom: 0rem;
+        }
     }
 
     .title {
         justify-content: center;
         align-items: start;
         gap: 0.25rem;
+
+        @include tablet-and-below {
+            padding: 1rem 0rem;
+        }
     }
 
     .contact {
-        justify-content: center;
         align-items: end;
         gap: 0.5rem;
-    }
 
-    .phone-email {
-        align-items: end;
+        @include tablet-and-below {
+            align-items: start;
+
+            border-top: 1px solid $primary-6;
+            padding: 1rem 0rem;
+        }
     }
 
     .social {
@@ -77,12 +93,21 @@
     }
 
     .copyright {
-        gap: 3rem;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
 
         border-top: 1px solid $primary-6;
-        padding: 1rem;
+        padding: 1rem 0rem;
 
-        font-size: $header-5;
+        font-size: $header-4;
         color: $primary-6;
+
+        @include tablet-and-below {
+            flex-direction: column;
+            align-items: start;
+            justify-content: start;
+            gap: 1rem;
+        }
     }
 </style>

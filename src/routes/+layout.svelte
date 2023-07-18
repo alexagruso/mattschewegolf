@@ -12,8 +12,8 @@
 <style lang="scss">
     main {
         flex-grow: 1;
-        gap: 4rem;
+        gap: clamp(3rem, 1vh, 4rem);
 
-        margin: 4rem 12rem;
+        margin: clamp(3rem, 1vh, 4rem) clamp(2rem, 10vw, 12rem);
     }
 </style>

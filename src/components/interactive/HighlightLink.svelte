@@ -17,6 +17,7 @@
 
         font-size: $navbar-link;
         font-weight: 600;
+        text-align: center;
         text-transform: lowercase;
 
         span {
