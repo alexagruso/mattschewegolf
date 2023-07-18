@@ -16,7 +16,7 @@
         padding: 0.5rem 2rem;
 
         font-size: $navbar-link;
-        font-weight: 400;
+        font-weight: 600;
         text-transform: lowercase;
 
         span {

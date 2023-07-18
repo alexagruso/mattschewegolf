@@ -1,3 +1,80 @@
+<script lang="ts">
+    import { sendEmail } from "@lib/email/email";
+
+    enum InputStatus {
+        Empty,
+        Valid,
+        Invalid,
+    }
+
+    let name: string;
+    let content: string;
+    let email: string;
+    let phone: string;
+
+    let nameStatus: InputStatus = InputStatus.Empty;
+    let contentStatus: InputStatus = InputStatus.Empty;
+    let emailStatus: InputStatus = InputStatus.Empty;
+    let phoneStatus: InputStatus = InputStatus.Empty;
+
+    let statusActive = false;
+    let status = "status inactive";
+
+    let allowSubmission = true;
+
+    let form;
+
+    const validateForm = async () => {
+        let badInput = false;
+        statusActive = true;
+
+        status = "Sending email...";
+
+        if (!name) {
+            nameStatus = InputStatus.Invalid;
+            badInput = true;
+        } else {
+            nameStatus = InputStatus.Valid;
+        }
+
+        if (!content) {
+            contentStatus = InputStatus.Invalid;
+            badInput = true;
+        } else {
+            contentStatus = InputStatus.Valid;
+        }
+
+        if (!email) {
+            emailStatus = InputStatus.Invalid;
+            badInput = true;
+        } else {
+            emailStatus = InputStatus.Valid;
+        }
+
+        if (!phone) {
+            phoneStatus = InputStatus.Invalid;
+            badInput = true;
+        } else {
+            phoneStatus = InputStatus.Valid;
+        }
+
+        if (badInput) {
+            status = "Some input is still required...";
+            return;
+        }
+
+        await sendEmail({ name, content, email, phone })
+            .then(() => {
+                status = "Email sent successfully!";
+                allowSubmission = false;
+            })
+            .catch((error) => {
+                status = "An error occured, please try again later.";
+                console.error(error);
+            });
+    };
+</script>
+
 <div class="row card">
     <div class="col intro">
         <h1 class="title">Lesson<br />Rates</h1>
@@ -60,15 +137,44 @@
 </div>
 <div class="row card contact">
     <div class="col content">
-        <form class="col">
-            <input type="text" id="name" placeholder="Full Name *" />
+        <!-- BUG: for some reason, this form element won't accept the "onsubmit" attribute, yet including it achieves the
+            goal of preventing form submission from reloading html. Linter bug maybe? -->
+        <form
+            class="col"
+            on:submit={allowSubmission
+                ? async () => await validateForm()
+                : () => {
+                      status = "Email already sent, cannot send again.";
+                  }}
+            onsubmit="return false;">
+            <input
+                bind:value={name}
+                class:invalid-input={nameStatus === InputStatus.Invalid}
+                type="text"
+                id="name"
+                placeholder="Full Name *" />
             <div class="row sender-contact">
-                <input type="text" id="email" placeholder="Email *" />
-                <input type="text" id="phone" placeholder="Phone *" />
+                <input
+                    bind:value={email}
+                    class:invalid-input={emailStatus === InputStatus.Invalid}
+                    type="text"
+                    id="email"
+                    placeholder="Email *" />
+                <input
+                    bind:value={phone}
+                    class:invalid-input={phoneStatus === InputStatus.Invalid}
+                    type="text"
+                    id="phone"
+                    placeholder="Phone *" />
             </div>
-            <textarea id="message" placeholder="Message *" />
+            <textarea
+                bind:value={content}
+                class:invalid-input={contentStatus === InputStatus.Invalid}
+                id="content"
+                placeholder="Message *" />
+            <button type="submit" class:submission-disabled={!allowSubmission}>Send Message</button>
         </form>
-        <button type="submit">Send Message</button>
+        <h3 class="form-status" class:inactive={!statusActive}>{status}</h3>
     </div>
     <div class="col intro">
         <h2 class="title">Contact</h2>
@@ -244,5 +350,13 @@
 
             color: $primary-6;
         }
+    }
+
+    .invalid-input {
+        background-color: mix($primary-6, $accent-6, 75%);
+    }
+
+    .inactive {
+        color: rgba($primary-6, 0);
     }
 </style>

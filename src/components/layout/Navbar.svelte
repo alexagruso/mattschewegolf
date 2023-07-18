@@ -20,9 +20,17 @@
 
 <style lang="scss">
     nav {
+        position: sticky;
+        // HACK: main page cards are forcing this hack, please fix
+        z-index: 3;
+        top: 0rem;
+
+        display: block;
+
         justify-content: space-between;
         align-items: center;
 
+        box-shadow: 0rem 0.125rem 0.25rem 0rem $primary-1;
         padding: 0.5rem 12rem;
 
         background-color: $accent-2;
