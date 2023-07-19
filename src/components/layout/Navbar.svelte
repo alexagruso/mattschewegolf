@@ -39,15 +39,23 @@
 <style lang="scss">
     nav {
         position: sticky;
-        // HACK: main page cards are forcing this hack, please fix
+        // HACK: about page card is forcing this hack, please fix
         z-index: 3;
         top: 0rem;
 
         display: block;
 
+        box-shadow: 0rem 0.125rem 0.25rem 0rem $primary-1;
+        padding: 0.5rem 0rem;
+
         background-color: $accent-2;
 
         color: $primary-6;
+
+        @include tablet-and-below {
+            box-shadow: none;
+            padding: 0rem;
+        }
     }
 
     .shadow {
@@ -79,6 +87,10 @@
         @include tablet-and-below {
             justify-content: center;
         }
+
+        @include tablet-portrait {
+            padding: 0rem 0.5rem;
+        }
     }
 
     .logo {
@@ -91,7 +103,7 @@
     }
 
     .links {
-        gap: 1rem;
+        gap: 0.5rem;
 
         transition: all 150ms;
 
@@ -128,5 +140,9 @@
     .title {
         font-size: $header-3;
         text-transform: uppercase;
+
+        @include tablet-portrait {
+            font-size: $header-4;
+        }
     }
 </style>

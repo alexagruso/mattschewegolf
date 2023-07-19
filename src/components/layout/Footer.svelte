@@ -47,6 +47,7 @@
 
         background-color: $accent-2;
 
+        font-size: $header-6;
         color: $primary-6;
 
         @include tablet-and-below {
@@ -100,7 +101,6 @@
         border-top: 1px solid $primary-6;
         padding: 1rem 0rem;
 
-        font-size: $header-4;
         color: $primary-6;
 
         @include tablet-and-below {

@@ -22,8 +22,6 @@
 
     let allowSubmission = true;
 
-    let form;
-
     const validateForm = async () => {
         let badInput = false;
         statusActive = true;
@@ -75,9 +73,9 @@
     };
 </script>
 
-<div class="row card">
+<section class="col card">
     <div class="col intro">
-        <h1 class="title">Lesson<br />Rates</h1>
+        <h1 class="title">Lesson Rates</h1>
         <p class="subtitle">
             Matt offers several lesson packages, as well as discounts for youth lessons. To schedule a lesson, contact
             Matt directly or fill out the contact form below.
@@ -134,8 +132,8 @@
             -- Indicates a lesson package that is unavailable. Lesson packages are non-refundable.
         </h3>
     </div>
-</div>
-<div class="row card contact">
+</section>
+<section class="col card contact">
     <div class="col content">
         <!-- BUG: for some reason, this form element won't accept the "onsubmit" attribute, yet including it achieves the
             goal of preventing form submission from reloading html. Linter bug maybe? -->
@@ -184,26 +182,33 @@
             submitting the contact form.
         </p>
     </div>
-</div>
+</section>
 
 <style lang="scss">
     .card {
-        margin: 0rem 10rem;
         box-shadow: 0rem 0.25rem 1rem 0.25rem rgba(black, 0.25);
-        max-height: 80vh;
 
         color: $primary-1;
+        margin: 0rem;
+
+        &.contact {
+            flex-direction: column-reverse;
+        }
     }
 
     .intro {
         gap: 2rem;
 
         padding: 2rem;
-        width: 30%;
+        width: 100%;
 
         background-color: $accent-2;
 
         color: $primary-6;
+
+        @include tablet-and-below {
+            width: 100%;
+        }
     }
 
     .title {
@@ -214,15 +219,27 @@
     .subtitle {
         font-size: $paragraph;
         font-weight: 400;
-        text-align: justify;
+
+        @include desktop {
+            max-width: 40%;
+        }
     }
 
     .content {
         gap: 0.5rem;
 
-        padding: 4rem;
+        padding: 2rem;
+        width: 100%;
 
-        width: 70%;
+        @include phone {
+            padding: 2rem 0rem;
+        }
+    }
+
+    .contact .content {
+        @include phone {
+            padding: 2rem;
+        }
     }
 
     thead,
@@ -275,6 +292,10 @@
 
     .disclaimer {
         font-size: $header-5;
+
+        @include phone {
+            padding: 1rem;
+        }
     }
 
     .highlight {
@@ -282,20 +303,23 @@
         text-decoration: underline;
     }
 
-    .contact .intro {
-        // HACK: eww... this gets the line breaks just right for the text
-        width: 31%;
-    }
-
     form {
         gap: 0.5rem;
     }
 
     .sender-contact {
+        flex-grow: 1;
+        justify-content: center;
         gap: 0.5rem;
 
         input {
             flex-grow: 1;
+
+            min-width: 0%;
+        }
+
+        @include tablet-portrait-and-below {
+            flex-direction: column;
         }
     }
 
@@ -314,8 +338,6 @@
         color: $accent-2;
 
         &:focus {
-            // border-color: $accent-6;
-
             background-color: mix($primary-6, $accent-6, 75%);
         }
 

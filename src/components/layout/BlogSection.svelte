@@ -2,62 +2,69 @@
     import ButtonLink from "@components/interactive/ButtonLink.svelte";
 </script>
 
-<section class="row card hero">
+<section class="row card">
     <div class="col text center">
-        <h1 class="title">STAY UP TO DATE WITH THE LATEST NEWS</h1>
+        <h1 class="title">STAY UP TO DATE<br />WITH THE LATEST NEWS</h1>
         <h2 class="subtitle">
             All of the latest information about Matt, including awards, celebrity shout outs, and more, are posted on
             our blog.
         </h2>
         <ButtonLink href="/blog">Visit Matt's Blog</ButtonLink>
     </div>
-    <div class="image">
+    <div class="col image">
         <img src="images/matt/blogsection.png" alt="matt's golf clubs" />
     </div>
 </section>
 
 <style lang="scss">
     .card {
-        margin: 0rem 14rem;
+        margin: 0rem;
         box-shadow: 0rem 0.25rem 1rem 0.25rem rgba(black, 0.25);
-        height: 34rem;
 
         background-color: $primary-6;
+
+        @include tablet-portrait-and-below {
+            flex-direction: column;
+        }
     }
 
-    .hero {
-        .text {
-            gap: 2rem;
+    .text {
+        flex-grow: 1;
+        flex-basis: 1rem;
+        gap: 2rem;
 
-            padding: 0rem 8rem 0rem 4rem;
-        }
+        padding: 4rem 0rem;
+    }
 
-        .title {
-            font-size: $header-3;
-            text-align: center;
-            text-transform: uppercase;
-            color: $primary-1;
-        }
+    .title {
+        font-size: $header-2;
+        text-align: center;
+        text-transform: uppercase;
+        color: $primary-1;
+    }
 
-        .subtitle {
-            font-size: $paragraph;
-            font-weight: 400;
-            text-align: center;
-            color: $primary-3;
-        }
+    .subtitle {
+        max-width: 70%;
 
-        .image {
-            display: flow-root;
-            position: relative;
-            min-width: 35%;
+        font-size: $paragraph;
+        font-weight: 400;
+        text-align: center;
+        color: $primary-3;
+    }
 
-            background-color: $accent-2;
+    .image {
+        flex-grow: 0.5;
+        flex-basis: 1rem;
+        justify-content: center;
 
-            img {
-                position: absolute;
-                top: 2rem;
-                right: 3rem;
-            }
+        background-color: $accent-2;
+    }
+
+    img {
+        object-fit: contain;
+
+        @include tablet-portrait-and-below {
+            max-height: 30vh;
         }
     }
 </style>
