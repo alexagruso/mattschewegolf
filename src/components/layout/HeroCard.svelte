@@ -6,8 +6,9 @@
     <div class="col text center">
         <h1 class="title">Matt Schewe:<br />Your Next<br />Golf Coach</h1>
         <h2 class="subtitle">
-            Matt Schewe is a Houston based golf instructor with over 30 years of teaching experience. Find out more
-            about what makes him uniquely qualified:
+            Matt Schewe is a Houston based golf instructor with over 30 years of teaching experience. He strives to
+            teach an effortless golf swing that is repeatable and easy to learn. Find out more about what makes him
+            uniquely qualified:
         </h2>
         <ButtonLink href="/about">Learn More About Matt</ButtonLink>
     </div>
