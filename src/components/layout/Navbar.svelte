@@ -7,6 +7,10 @@
 
 <nav class="col">
     <div class="row hamburger" class:shadow={!show}>
+        <div class="row pga">
+            <img src="images/navbar/pga.png" alt="pga logo" />
+            <h1>Matt Schewe</h1>
+        </div>
         <div class="icon">
             <Hamburger bind:active={show} />
         </div>
@@ -63,7 +67,7 @@
     }
 
     .hamburger {
-        justify-content: right;
+        justify-content: space-between;
 
         display: none;
 
@@ -73,6 +77,20 @@
 
         @include tablet-and-below {
             display: flex;
+        }
+    }
+
+    .pga {
+        align-self: center;
+        align-items: center;
+        gap: 0.5rem;
+
+        h1 {
+            text-transform: uppercase;
+        }
+
+        img {
+            max-height: 3rem;
         }
     }
 

@@ -34,6 +34,7 @@
         <div class="row copyright">
             <span>Copyright © 2023 Matt Schewe. All Rights Reserved.</span>
             <!-- <DarkButtonLink href="/login">Admin Login</DarkButtonLink> -->
+            <img src="images/navbar/pga.png" alt="pga logo" />
         </div>
     </div>
 </footer>
@@ -102,6 +103,10 @@
         padding: 1rem 0rem;
 
         color: $primary-6;
+
+        img {
+            max-height: 4rem;
+        }
 
         @include tablet-and-below {
             flex-direction: column;
