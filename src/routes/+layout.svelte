@@ -19,5 +19,9 @@
         @include tablet-and-below {
             margin: clamp(3rem, 1vh, 4rem) 0rem;
         }
+
+        @include desktop {
+            margin: clamp(3rem, 1vh, 4rem) 15vw;
+        }
     }
 </style>

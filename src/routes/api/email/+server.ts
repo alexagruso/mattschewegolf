@@ -27,8 +27,8 @@ export const POST = (async ({ request }) => {
 
     return await transporter
         .sendMail({
-            from: "alex@alexagruso.dev",
-            to: "alex@alexagruso.dev",
+            from: "matt@mattschewegolf.com",
+            to: "matt@mattschewegolf.com",
             subject: `Website Email`,
             html: messageHtml,
         })
@@ -37,6 +37,7 @@ export const POST = (async ({ request }) => {
         })
         .catch((error) => {
             console.error("Failed to send email...");
+            console.error(error);
             return new Response(error, { status: 503 }); // Service unavailable
         });
 }) satisfies RequestHandler;
