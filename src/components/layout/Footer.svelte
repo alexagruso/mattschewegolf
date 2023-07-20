@@ -33,7 +33,7 @@
         </div>
         <div class="row copyright">
             <span>Copyright © 2023 Matt Schewe. All Rights Reserved.</span>
-            <DarkButtonLink href="/login">Admin Login</DarkButtonLink>
+            <!-- <DarkButtonLink href="/login">Admin Login</DarkButtonLink> -->
         </div>
     </div>
 </footer>
