@@ -1,4 +1,5 @@
 <script>
+    import { page } from "$app/stores";
     import Hamburger from "@components/interactive/Hamburger.svelte";
     import HighlightLink from "@components/interactive/HighlightLink.svelte";
 
@@ -17,11 +18,15 @@
     </div>
     <div class="row content">
         <div class="row logo">
-            <img src="images/navbar/pga.png" alt="pga logo" />
-            <div class="col text">
-                <span class="title">Matt Schewe</span>
-                <span class="subtitle">School of Golf</span>
-            </div>
+            {#if $page.data.currentSession}
+                <h1>Logged in as {$page.data.currentSession.user}</h1>
+            {:else}
+                <img src="images/navbar/pga.png" alt="pga logo" />
+                <div class="col text">
+                    <span class="title">Matt Schewe</span>
+                    <span class="subtitle">School of Golf</span>
+                </div>
+            {/if}
         </div>
         <div class="row links" class:hide={!show}>
             <div class="row link center">

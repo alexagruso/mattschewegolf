@@ -1,5 +1,7 @@
-<script>
+<script lang="ts">
+    import axios from "axios";
     import DarkButtonLink from "@components/interactive/DarkButtonLink.svelte";
+    import { page } from "$app/stores";
 </script>
 
 <footer>
@@ -32,8 +34,12 @@
             </div>
         </div>
         <div class="row copyright">
-            <span>Copyright © 2023 Matt Schewe. All Rights Reserved.</span>
-            <!-- <DarkButtonLink href="/login">Admin Login</DarkButtonLink> -->
+            <span>Copyright &copy; 2023 Matt Schewe. All Rights Reserved.</span>
+            {#if $page.data.currentSession}
+                <DarkButtonLink href="/dashboard">Dashboard</DarkButtonLink>
+            {:else}
+                <DarkButtonLink href="/login">Admin Login</DarkButtonLink>
+            {/if}
             <img src="images/navbar/pga.png" alt="pga logo" />
         </div>
     </div>
