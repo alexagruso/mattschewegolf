@@ -380,6 +380,8 @@
     }
 
     tr {
+        align-items: center;
+
         .package {
             flex-grow: 1;
             width: 40%;
