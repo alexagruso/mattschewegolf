@@ -1,5 +1,10 @@
 <script lang="ts">
+    import axios from "axios";
+    import { enhance } from "$app/forms";
+    import { invalidateAll } from "$app/navigation";
+    import { page } from "$app/stores";
     import { sendEmail } from "@lib/email/email";
+    import type { PageServerData } from "./$types";
 
     enum InputStatus {
         Empty,
@@ -7,6 +12,7 @@
         Invalid,
     }
 
+    // HACK: gross, fix this eventually
     let name: string;
     let content: string;
     let email: string;
@@ -17,10 +23,23 @@
     let emailStatus: InputStatus = InputStatus.Empty;
     let phoneStatus: InputStatus = InputStatus.Empty;
 
+    let rateName: string;
+    let rateYouthPrice: number;
+    let rateAdultPrice: number;
+
+    let rateNameStatus: InputStatus = InputStatus.Empty;
+    let rateYouthPriceStatus: InputStatus = InputStatus.Empty;
+    let rateAdultPriceStatus: InputStatus = InputStatus.Empty;
+
+    let rateStatusActive = false;
+    let rateStatus = "status inactive";
+
     let statusActive = false;
     let status = "status inactive";
 
     let allowSubmission = true;
+
+    let editID: string;
 
     const validateForm = async () => {
         let badInput = false;
@@ -71,7 +90,60 @@
                 console.error(error);
             });
     };
+
+    const deleteRate = async (id: string) => {
+        try {
+            await axios.delete("http://localhost:8080/api/rates", { data: { id } });
+            await invalidateAll();
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const validateNewRate = async () => {
+        let badInput = false;
+        rateStatusActive = true;
+
+        rateStatus = "Creating new rate...";
+
+        if (!rateName) {
+            rateNameStatus = InputStatus.Invalid;
+            badInput = true;
+        } else {
+            rateNameStatus = InputStatus.Valid;
+        }
+
+        if (!rateAdultPrice) {
+            rateAdultPriceStatus = InputStatus.Invalid;
+            badInput = true;
+        } else {
+            rateAdultPriceStatus = InputStatus.Valid;
+        }
+
+        if (badInput) {
+            rateStatus = "Some input is still required...";
+            return;
+        }
+
+        try {
+            await axios.post("http://localhost:8080/api/rates", {
+                name: rateName,
+                youthPrice: rateYouthPrice,
+                adultPrice: rateAdultPrice,
+            });
+
+            await invalidateAll();
+
+            rateStatus = "Successfully created new rate.";
+        } catch (error) {
+            rateStatus = "An error occured, please try again later.";
+        }
+    };
+
+    export let data: PageServerData;
 </script>
+
+<!-- TODO: convert these forms to sveltekit form actions. -->
 
 <section class="col card">
     <div class="col intro">
@@ -91,52 +163,86 @@
                 </tr>
             </thead>
             <tbody class="col">
-                <tr class="row">
-                    <td class="package">1 Half Hour Lesson</td>
-                    <td class="youth-price">$60</td>
-                    <td class="adult-price">$70</td>
-                </tr>
-                <tr class="row">
-                    <td class="package">1 Full Hour Lesson</td>
-                    <td class="youth-price">$100</td>
-                    <td class="adult-price">$120</td>
-                </tr>
-                <tr class="row">
-                    <td class="package">3 Half Hour Lessons</td>
-                    <td class="youth-price">$170</td>
-                    <td class="adult-price">$200</td>
-                </tr>
-                <tr class="row">
-                    <td class="package">3 Full Hour Lessons</td>
-                    <td class="youth-price">--</td>
-                    <td class="adult-price">$340</td>
-                </tr>
-                <tr class="row">
-                    <td class="package">6 Half Hour Lessons</td>
-                    <td class="youth-price">$325</td>
-                    <td class="adult-price">$375</td>
-                </tr>
-                <tr class="row">
-                    <td class="package">6 Full Hour Lessons</td>
-                    <td class="youth-price">--</td>
-                    <td class="adult-price">$650</td>
-                </tr>
-                <tr class="row">
-                    <td class="package">12 Full Hour Lesson</td>
-                    <td class="youth-price">--</td>
-                    <td class="adult-price">$1,300</td>
-                </tr>
+                {#if data.rates}
+                    {#each data.rates as rate}
+                        <div class="entry col">
+                            <tr class="row">
+                                <td class="package">{rate.name}</td>
+                                <td class="youth-price">{rate.youthPrice ? `$${rate.youthPrice}` : "--"}</td>
+                                <td class="adult-price">${rate.adultPrice}</td>
+                            </tr>
+                            {#if $page.data.currentSession}
+                                <div class="col">
+                                    <div class="actions row">
+                                        <button on:click={async () => await deleteRate(rate._id)}>Delete</button>
+                                        <button on:click={() => (editID = rate._id)}>Edit</button>
+                                    </div>
+                                    {#if editID === rate._id}
+                                        <form
+                                            class="rate col"
+                                            action="?/edit"
+                                            method="post"
+                                            use:enhance
+                                            on:submit={() => {
+                                                editID = "";
+                                            }}>
+                                            <input type="text" name="name" placeholder="Package name" required />
+                                            <input type="number" name="youthPrice" placeholder="Youth Price" />
+                                            <input type="text" name="adultPrice" placeholder="Adult Price" required />
+                                            <!-- HACK: to get rate._id into form action -->
+                                            <input
+                                                class="form-id"
+                                                type="text"
+                                                name="id"
+                                                bind:value={rate._id}
+                                                required />
+                                            <button type="submit">Confirm</button>
+                                        </form>
+                                    {/if}
+                                </div>
+                            {/if}
+                        </div>
+                    {/each}
+                {:else}
+                    <h2>Failed to load rates, please check back later.</h2>
+                {/if}
             </tbody>
         </table>
         <h3 class="disclaimer">
             -- Indicates a lesson package that is unavailable. Lesson packages are non-refundable.
         </h3>
+        <!-- BUG: likewise here, the "onsubmit" attribute is causing an annoying error. -->
+        {#if $page.data.currentSession}
+            <form class="rate col" on:submit={async () => await validateNewRate()} onsubmit="return false;">
+                <input
+                    bind:value={rateName}
+                    class:invalid-input={rateNameStatus === InputStatus.Invalid}
+                    type="text"
+                    id="name"
+                    placeholder="e.g. 1 Hour Lesson" />
+                <input
+                    bind:value={rateYouthPrice}
+                    class:invalid-input={rateYouthPriceStatus === InputStatus.Invalid}
+                    type="number"
+                    id="name"
+                    placeholder="e.g. $100" />
+                <input
+                    bind:value={rateAdultPrice}
+                    class:invalid-input={rateAdultPriceStatus === InputStatus.Invalid}
+                    type="text"
+                    id="name"
+                    placeholder="e.g. $100" />
+                <button type="submit">Create New Lesson Rate</button>
+                <h3 class="form-status" class:inactive={!rateStatusActive}>{rateStatus}</h3>
+            </form>
+        {/if}
     </div>
 </section>
 <section class="col card contact">
     <div class="col content">
         <!-- BUG: for some reason, this form element won't accept the "onsubmit" attribute, yet including it achieves the
-            goal of preventing form submission from reloading html. Linter bug maybe? -->
+            goal of preventing form submission from reloading html. Linter bug maybe? Potential fix: convert to form action -->
+        <!-- FIX: converting to form action and adding "use:enhance" removes the need for "onsubmit" -->
         <form
             class="col"
             on:submit={allowSubmission
@@ -269,7 +375,7 @@
         text-align: left;
     }
 
-    tbody tr:nth-child(2n-1) {
+    tbody .entry:nth-child(2n-1) {
         background-color: mix($primary-5, white, 50%);
     }
 
@@ -277,6 +383,8 @@
         .package {
             flex-grow: 1;
             width: 40%;
+
+            text-transform: capitalize;
         }
 
         .youth-price {
@@ -288,6 +396,10 @@
             flex-grow: 1;
             width: 30%;
         }
+    }
+
+    .actions {
+        padding: 0.5rem;
     }
 
     .disclaimer {
@@ -343,7 +455,7 @@
 
         &::placeholder {
             font-size: $header-5;
-            color: $accent-2;
+            color: rgba($accent-2, 75%);
         }
     }
 
@@ -380,5 +492,19 @@
 
     .inactive {
         color: rgba($primary-6, 0);
+    }
+
+    .actions {
+        gap: 0.5rem;
+    }
+
+    .rate {
+        gap: 0.5rem;
+
+        padding: 0.5rem;
+    }
+
+    .form-id {
+        display: none;
     }
 </style>

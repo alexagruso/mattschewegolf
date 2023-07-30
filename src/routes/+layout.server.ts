@@ -23,6 +23,7 @@ export const load: LayoutServerLoad = async (event) => {
 
     try {
         if (!(await sessions.findOne(currentSession))) {
+            event.cookies.delete("Session");
             return {};
         }
     } catch (error) {

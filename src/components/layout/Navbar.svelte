@@ -1,12 +1,12 @@
 <script>
-    import { page } from "$app/stores";
     import Hamburger from "@components/interactive/Hamburger.svelte";
     import HighlightLink from "@components/interactive/HighlightLink.svelte";
+    import { page } from "$app/stores";
 
     let show = false;
 </script>
 
-<nav class="col">
+<nav class="col" data-sveltekit-reload>
     <div class="row hamburger" class:shadow={!show}>
         <div class="row pga">
             <img src="images/navbar/pga.png" alt="pga logo" />
