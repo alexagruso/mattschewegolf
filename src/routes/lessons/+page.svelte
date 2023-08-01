@@ -1,143 +1,14 @@
 <script lang="ts">
-    import axios from "axios";
     import { enhance } from "$app/forms";
     import { invalidateAll } from "$app/navigation";
     import { page } from "$app/stores";
-    import { sendEmail } from "@lib/email/email";
     import type { PageServerData } from "./$types";
-
-    enum InputStatus {
-        Empty,
-        Valid,
-        Invalid,
-    }
-
-    // HACK: gross, fix this eventually
-    let name: string;
-    let content: string;
-    let email: string;
-    let phone: string;
-
-    let nameStatus: InputStatus = InputStatus.Empty;
-    let contentStatus: InputStatus = InputStatus.Empty;
-    let emailStatus: InputStatus = InputStatus.Empty;
-    let phoneStatus: InputStatus = InputStatus.Empty;
-
-    let rateName: string;
-    let rateYouthPrice: number;
-    let rateAdultPrice: number;
-
-    let rateNameStatus: InputStatus = InputStatus.Empty;
-    let rateYouthPriceStatus: InputStatus = InputStatus.Empty;
-    let rateAdultPriceStatus: InputStatus = InputStatus.Empty;
-
-    let rateStatusActive = false;
-    let rateStatus = "status inactive";
-
-    let statusActive = false;
-    let status = "status inactive";
-
-    let allowSubmission = true;
 
     let editID: string;
 
-    const validateForm = async () => {
-        let badInput = false;
-        statusActive = true;
-
-        status = "Sending email...";
-
-        if (!name) {
-            nameStatus = InputStatus.Invalid;
-            badInput = true;
-        } else {
-            nameStatus = InputStatus.Valid;
-        }
-
-        if (!content) {
-            contentStatus = InputStatus.Invalid;
-            badInput = true;
-        } else {
-            contentStatus = InputStatus.Valid;
-        }
-
-        if (!email) {
-            emailStatus = InputStatus.Invalid;
-            badInput = true;
-        } else {
-            emailStatus = InputStatus.Valid;
-        }
-
-        if (!phone) {
-            phoneStatus = InputStatus.Invalid;
-            badInput = true;
-        } else {
-            phoneStatus = InputStatus.Valid;
-        }
-
-        if (badInput) {
-            status = "Some input is still required...";
-            return;
-        }
-
-        await sendEmail({ name, content, email, phone })
-            .then(() => {
-                status = "Email sent successfully!";
-                allowSubmission = false;
-            })
-            .catch((error) => {
-                status = "An error occured, please try again later.";
-                console.error(error);
-            });
-    };
-
-    const deleteRate = async (id: string) => {
-        try {
-            await axios.delete("http://localhost:8080/api/rates", { data: { id } });
-            await invalidateAll();
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    const validateNewRate = async () => {
-        let badInput = false;
-        rateStatusActive = true;
-
-        rateStatus = "Creating new rate...";
-
-        if (!rateName) {
-            rateNameStatus = InputStatus.Invalid;
-            badInput = true;
-        } else {
-            rateNameStatus = InputStatus.Valid;
-        }
-
-        if (!rateAdultPrice) {
-            rateAdultPriceStatus = InputStatus.Invalid;
-            badInput = true;
-        } else {
-            rateAdultPriceStatus = InputStatus.Valid;
-        }
-
-        if (badInput) {
-            rateStatus = "Some input is still required...";
-            return;
-        }
-
-        try {
-            await axios.post("http://localhost:8080/api/rates", {
-                name: rateName,
-                youthPrice: rateYouthPrice,
-                adultPrice: rateAdultPrice,
-            });
-
-            await invalidateAll();
-
-            rateStatus = "Successfully created new rate.";
-        } catch (error) {
-            rateStatus = "An error occured, please try again later.";
-        }
+    const resetEditForm = async () => {
+        await invalidateAll();
+        editID = "";
     };
 
     export let data: PageServerData;
@@ -174,42 +45,51 @@
                             {#if $page.data.currentSession}
                                 <div class="col">
                                     <div class="actions row">
-                                        <button on:click={async () => await deleteRate(rate._id)}>Delete</button>
-                                        <button on:click={() => (editID = rate._id)}>Edit</button>
+                                        <form action="?/delete" method="post" use:enhance>
+                                            <!-- HACK: to get rate._id into form action -->
+                                            <input class="form-id" type="text" name="id" id="id" value={rate._id} />
+                                            <button type="submit">Delete</button>
+                                        </form>
+                                        <button
+                                            on:click={() => (editID === rate._id ? (editID = "") : (editID = rate._id))}
+                                            >Edit</button>
                                     </div>
                                     {#if editID === rate._id}
                                         <form
                                             class="rate col"
                                             action="?/edit"
                                             method="post"
-                                            use:enhance
-                                            on:submit={() => {
-                                                editID = "";
-                                            }}>
-                                            <input
-                                                type="text"
-                                                name="name"
-                                                placeholder="Package name"
-                                                value={rate.name}
-                                                required />
-                                            <input
-                                                type="number"
-                                                name="youthPrice"
-                                                placeholder="Youth price"
-                                                value={rate.youthPrice} />
-                                            <input
-                                                type="text"
-                                                name="adultPrice"
-                                                placeholder="Adult price"
-                                                required
-                                                value={rate.adultPrice} />
+                                            on:submit={resetEditForm}
+                                            use:enhance>
+                                            <div class="input-group">
+                                                <label for="name">Package Name</label>
+                                                <input
+                                                    type="text"
+                                                    name="name"
+                                                    id="name"
+                                                    placeholder="e.g. 1 Half Hour Lesson"
+                                                    value={rate.name} />
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="name">Youth Price</label>
+                                                <input
+                                                    type="text"
+                                                    name="youth-price"
+                                                    id="youth-price"
+                                                    placeholder="e.g. 100"
+                                                    value={rate.youthPrice} />
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="name">Adult Price</label>
+                                                <input
+                                                    type="text"
+                                                    name="adult-price"
+                                                    id="adult-price"
+                                                    placeholder="e.g. 100"
+                                                    value={rate.adultPrice} />
+                                            </div>
                                             <!-- HACK: to get rate._id into form action -->
-                                            <input
-                                                class="form-id"
-                                                type="text"
-                                                name="id"
-                                                bind:value={rate._id}
-                                                required />
+                                            <input class="form-id" type="text" name="id" bind:value={rate._id} />
                                             <button type="submit">Confirm Edit</button>
                                         </form>
                                     {/if}
@@ -229,27 +109,20 @@
         </h3>
         <!-- BUG: likewise here, the "onsubmit" attribute is causing an annoying error. -->
         {#if $page.data.currentSession}
-            <form class="rate col" on:submit={async () => await validateNewRate()} onsubmit="return false;">
-                <input
-                    bind:value={rateName}
-                    class:invalid-input={rateNameStatus === InputStatus.Invalid}
-                    type="text"
-                    id="name"
-                    placeholder="Package name" />
-                <input
-                    bind:value={rateYouthPrice}
-                    class:invalid-input={rateYouthPriceStatus === InputStatus.Invalid}
-                    type="number"
-                    id="name"
-                    placeholder="Youth price" />
-                <input
-                    bind:value={rateAdultPrice}
-                    class:invalid-input={rateAdultPriceStatus === InputStatus.Invalid}
-                    type="text"
-                    id="name"
-                    placeholder="Adult price" />
+            <form class="col rate-form" action="?/create" method="post" on:submit={invalidateAll} use:enhance>
+                <div class="input-group">
+                    <label for="name">Package Name</label>
+                    <input type="text" name="name" id="name" placeholder="e.g. 1 Half Hour Lesson" />
+                </div>
+                <div class="input-group">
+                    <label for="name">Youth Price</label>
+                    <input type="text" name="youth-price" id="youth-price" placeholder="e.g. 100" />
+                </div>
+                <div class="input-group">
+                    <label for="name">Adult Price</label>
+                    <input type="text" name="adult-price" id="adult-price" placeholder="e.g. 100" />
+                </div>
                 <button type="submit">Create New Lesson Rate</button>
-                <h3 class="form-status" class:inactive={!rateStatusActive}>{rateStatus}</h3>
             </form>
         {/if}
     </div>
@@ -259,7 +132,7 @@
         <!-- BUG: for some reason, this form element won't accept the "onsubmit" attribute, yet including it achieves the
             goal of preventing form submission from reloading html. Linter bug maybe? Potential fix: convert to form action -->
         <!-- FIX: converting to form action and adding "use:enhance" removes the need for "onsubmit" -->
-        <form
+        <!-- <form
             class="col"
             on:submit={allowSubmission
                 ? async () => await validateForm()
@@ -272,12 +145,13 @@
                 class:invalid-input={nameStatus === InputStatus.Invalid}
                 type="text"
                 id="name"
-                placeholder="Full Name *" />
+                placeholder="e.g. John Doe" />
             <div class="row sender-contact">
                 <input
                     bind:value={email}
                     class:invalid-input={emailStatus === InputStatus.Invalid}
-                    type="text"
+                    type="email"
+                    name="email"
                     id="email"
                     placeholder="Email *" />
                 <input
@@ -293,8 +167,24 @@
                 id="content"
                 placeholder="Message *" />
             <button type="submit" class:submission-disabled={!allowSubmission}>Send Message</button>
+        </form> -->
+        <form class="col" action="?/email" method="post" use:enhance>
+            <div class="input-group">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" placeholder="e.g. John Doe" />
+            </div>
+            <div class="row sender-contact">
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="Email *" />
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Phone</label>
+                    <input type="tel" name="phone" id="phone" placeholder="e.g. (123) 456-7890" />
+                </div>
+            </div>
         </form>
-        <h3 class="form-status" class:inactive={!statusActive}>{status}</h3>
     </div>
     <div class="col intro">
         <h2 class="title">Contact</h2>
@@ -401,8 +291,6 @@
         .package {
             flex-grow: 1;
             width: 40%;
-
-            text-transform: capitalize;
         }
 
         .youth-price {
@@ -522,11 +410,21 @@
         padding: 0.5rem;
     }
 
-    .form-id {
-        display: none;
+    label {
+        color: $accent-2;
     }
 
-    .error {
-        padding: 0.5rem;
+    .input-group {
+        display: flex;
+        gap: 0.5rem;
+        flex-direction: column;
+    }
+
+    .rate-form {
+        gap: 0.5rem;
+    }
+
+    .form-id {
+        display: none;
     }
 </style>
