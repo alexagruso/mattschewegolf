@@ -1,4 +1,6 @@
+import { guardEndpoint } from "@lib/server/authentication/guards";
 import { rates } from "@lib/server/schemas/rate";
+import { sessions } from "@lib/server/schemas/session";
 import { json, type RequestHandler } from "@sveltejs/kit";
 
 export const GET: RequestHandler = async () => {
@@ -13,9 +15,13 @@ export const GET: RequestHandler = async () => {
     }
 };
 
-export const POST: RequestHandler = async ({ request }) => {
+export const POST: RequestHandler = async (event) => {
     try {
-        const newRate = await request.json();
+        if (!(await guardEndpoint(event))) {
+            return new Response("Not authorized to access this endpoint", { status: 401 });
+        }
+
+        const newRate = await event.request.json();
         await rates.insertMany(newRate);
 
         return new Response("Successfully created new lesson rate");
@@ -27,7 +33,13 @@ export const POST: RequestHandler = async ({ request }) => {
     }
 };
 
-export const DELETE: RequestHandler = async ({ request }) => {
+export const DELETE: RequestHandler = async ({ cookies, request }) => {
+    const currentSession = JSON.parse(cookies.get("Session") ?? "{}");
+
+    if (!(await sessions.findOne(currentSession))) {
+        return new Response("Not authorized to access this endpoint", { status: 401 });
+    }
+
     try {
         const { id } = await request.json();
         await rates.deleteOne({ _id: id });

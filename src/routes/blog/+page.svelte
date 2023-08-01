@@ -1,3 +1,7 @@
+<script lang="ts">
+    import { page } from "$app/stores";
+</script>
+
 <h1>Latest</h1>
 <h2>Nothing posted yet...</h2>
 

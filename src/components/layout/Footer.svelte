@@ -1,5 +1,4 @@
 <script lang="ts">
-    import axios from "axios";
     import DarkButtonLink from "@components/interactive/DarkButtonLink.svelte";
     import { page } from "$app/stores";
 </script>

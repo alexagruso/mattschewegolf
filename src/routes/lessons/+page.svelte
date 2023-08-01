@@ -186,9 +186,23 @@
                                             on:submit={() => {
                                                 editID = "";
                                             }}>
-                                            <input type="text" name="name" placeholder="Package name" required />
-                                            <input type="number" name="youthPrice" placeholder="Youth Price" />
-                                            <input type="text" name="adultPrice" placeholder="Adult Price" required />
+                                            <input
+                                                type="text"
+                                                name="name"
+                                                placeholder="Package name"
+                                                value={rate.name}
+                                                required />
+                                            <input
+                                                type="number"
+                                                name="youthPrice"
+                                                placeholder="Youth price"
+                                                value={rate.youthPrice} />
+                                            <input
+                                                type="text"
+                                                name="adultPrice"
+                                                placeholder="Adult price"
+                                                required
+                                                value={rate.adultPrice} />
                                             <!-- HACK: to get rate._id into form action -->
                                             <input
                                                 class="form-id"
@@ -196,7 +210,7 @@
                                                 name="id"
                                                 bind:value={rate._id}
                                                 required />
-                                            <button type="submit">Confirm</button>
+                                            <button type="submit">Confirm Edit</button>
                                         </form>
                                     {/if}
                                 </div>
@@ -204,7 +218,9 @@
                         </div>
                     {/each}
                 {:else}
-                    <h2>Failed to load rates, please check back later.</h2>
+                    <div class="error">
+                        <h2>Failed to load rates, please check back later.</h2>
+                    </div>
                 {/if}
             </tbody>
         </table>
@@ -219,19 +235,19 @@
                     class:invalid-input={rateNameStatus === InputStatus.Invalid}
                     type="text"
                     id="name"
-                    placeholder="e.g. 1 Hour Lesson" />
+                    placeholder="Package name" />
                 <input
                     bind:value={rateYouthPrice}
                     class:invalid-input={rateYouthPriceStatus === InputStatus.Invalid}
                     type="number"
                     id="name"
-                    placeholder="e.g. $100" />
+                    placeholder="Youth price" />
                 <input
                     bind:value={rateAdultPrice}
                     class:invalid-input={rateAdultPriceStatus === InputStatus.Invalid}
                     type="text"
                     id="name"
-                    placeholder="e.g. $100" />
+                    placeholder="Adult price" />
                 <button type="submit">Create New Lesson Rate</button>
                 <h3 class="form-status" class:inactive={!rateStatusActive}>{rateStatus}</h3>
             </form>
@@ -508,5 +524,9 @@
 
     .form-id {
         display: none;
+    }
+
+    .error {
+        padding: 0.5rem;
     }
 </style>

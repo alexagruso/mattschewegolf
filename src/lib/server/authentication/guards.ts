@@ -1,4 +1,4 @@
-import { error, type ServerLoadEvent } from "@sveltejs/kit";
+import { error, type RequestEvent, type ServerLoadEvent } from "@sveltejs/kit";
 import { isSession, sessions, type Session } from "../schemas/session";
 
 export const guardPage = async (event: ServerLoadEvent): Promise<Session> => {
@@ -15,4 +15,14 @@ export const guardPage = async (event: ServerLoadEvent): Promise<Session> => {
     }
 
     return currentSession;
+};
+
+export const guardEndpoint = async (event: RequestEvent): Promise<boolean> => {
+    const currentSession = JSON.parse(event.cookies.get("Session") ?? "{}");
+
+    if (!(await sessions.findOne(currentSession))) {
+        return false;
+    }
+
+    return true;
 };

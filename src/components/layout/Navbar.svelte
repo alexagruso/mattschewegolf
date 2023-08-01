@@ -9,8 +9,12 @@
 <nav class="col" data-sveltekit-reload>
     <div class="row hamburger" class:shadow={!show}>
         <div class="row pga">
-            <img src="images/navbar/pga.png" alt="pga logo" />
-            <h1>Matt Schewe</h1>
+            {#if $page.data.currentSession}
+                <h1>Logged in as {$page.data.currentSession.user}</h1>
+            {:else}
+                <img src="images/navbar/pga.png" alt="pga logo" />
+                <h1>Matt Schewe</h1>
+            {/if}
         </div>
         <div class="icon">
             <Hamburger bind:active={show} />
