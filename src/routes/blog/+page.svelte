@@ -80,7 +80,13 @@
                     use:enhance>
                     <div class="input-group">
                         <label for="name">Entry Title</label>
-                        <input type="text" name="title" id="title" placeholder="e.g. Matt wins award..." required />
+                        <input
+                            type="text"
+                            name="title"
+                            id="title"
+                            placeholder="e.g. Matt wins award..."
+                            value={entry.title}
+                            required />
                     </div>
                     <div class="input-group">
                         <label for="name">Content Link</label>
@@ -88,11 +94,17 @@
                             type="text"
                             name="content-link"
                             id="content-link"
-                            placeholder="e.g. https://example.com/..." />
+                            placeholder="e.g. https://example.com/..."
+                            value={entry.contentLink} />
                     </div>
                     <div class="input-group">
                         <label for="name">Content</label>
-                        <textarea name="content" id="content" placeholder="e.g. Matt wins award..." required />
+                        <textarea
+                            name="content"
+                            id="content"
+                            placeholder="e.g. Matt wins award..."
+                            value={entry.content}
+                            required />
                     </div>
                     <button type="submit">Confirm Edit</button>
                 </form>
