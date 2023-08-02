@@ -15,6 +15,9 @@ const config = {
             "@scss/*": "./src/scss/*",
             "@server/*": "./src/lib/server/*",
         },
+        csrf: {
+            checkOrigin: false,
+        },
     },
     onwarn: (warning, handler) => {
         const { code } = warning;

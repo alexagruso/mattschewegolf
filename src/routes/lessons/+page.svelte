@@ -168,7 +168,7 @@
         </form>
     </div>
     <div class="col intro">
-        <h2 class="title">Contact</h2>
+        <h1 class="title">Contact</h1>
         <p class="subtitle">
             Matt can be contacted through email at <span class="highlight">matt@mattschewegolf.com</span> or by phone at
             <span class="highlight">(713) 291-8861</span>. Alternatively, he can be contacted by filling out and
