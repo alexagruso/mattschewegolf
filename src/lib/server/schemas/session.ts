@@ -32,8 +32,8 @@ export const createSession = (user: string): Session => {
 };
 
 const sessionSchema = new Schema<Session>({
-    sessionID: { type: String, required: true, unique: true },
-    user: { type: String, required: true, unique: true },
+    sessionID: { type: String, required: true },
+    user: { type: String, required: true },
     createdAt: { type: Date, required: true },
     expiresAt: {
         type: Date,

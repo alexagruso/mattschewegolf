@@ -20,9 +20,10 @@ export const actions: Actions = {
     edit: async (event) => {
         try {
             const data = Object.fromEntries(await event.request.formData());
+            const id = event.url.searchParams.get("id");
 
             await rates.updateOne(
-                { _id: data.id },
+                { _id: id },
                 {
                     name: data.name,
                     youthPrice: data["youth-price"],
@@ -41,9 +42,8 @@ export const actions: Actions = {
 
     delete: async (event) => {
         try {
-            const data = Object.fromEntries(await event.request.formData());
-
-            await axios.delete(`${HOST}/api/rates`, { data: { id: data.id } });
+            const id = event.url.searchParams.get("id");
+            await axios.delete(`${HOST}/api/rates`, { data: { id } });
 
             return { deleteSuccess: true };
         } catch (error) {

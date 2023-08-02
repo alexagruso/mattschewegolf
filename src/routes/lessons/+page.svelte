@@ -44,15 +44,14 @@
                         <div class="entry col">
                             <tr class="row">
                                 <td class="package">{rate.name}</td>
-                                <td class="youth-price">{rate.youthPrice ? `$${rate.youthPrice}` : "--"}</td>
-                                <td class="adult-price">${rate.adultPrice}</td>
+                                <td class="youth-price"
+                                    >{rate.youthPrice ? `$${rate.youthPrice.toLocaleString()}` : "--"}</td>
+                                <td class="adult-price">${rate.adultPrice.toLocaleString()}</td>
                             </tr>
                             {#if $page.data.currentSession}
                                 <div class="col">
                                     <div class="actions row">
-                                        <form action="?/delete" method="post" use:enhance>
-                                            <!-- HACK: to get rate._id into form action -->
-                                            <input class="form-id" type="text" name="id" id="id" value={rate._id} />
+                                        <form action="?/delete&id={rate._id}" method="post" use:enhance>
                                             <button type="submit">Delete</button>
                                         </form>
                                         <button
@@ -62,7 +61,7 @@
                                     {#if editID === rate._id}
                                         <form
                                             class="rate col"
-                                            action="?/edit"
+                                            action="?/edit&id={rate._id}"
                                             method="post"
                                             on:submit={resetEditForm}
                                             use:enhance>
@@ -78,7 +77,7 @@
                                             <div class="input-group">
                                                 <label for="name">Youth Price</label>
                                                 <input
-                                                    type="text"
+                                                    type="number"
                                                     name="youth-price"
                                                     id="youth-price"
                                                     placeholder="e.g. 100"
@@ -87,14 +86,12 @@
                                             <div class="input-group">
                                                 <label for="name">Adult Price</label>
                                                 <input
-                                                    type="text"
+                                                    type="number"
                                                     name="adult-price"
                                                     id="adult-price"
                                                     placeholder="e.g. 100"
                                                     value={rate.adultPrice} />
                                             </div>
-                                            <!-- HACK: to get rate._id into form action -->
-                                            <input class="form-id" type="text" name="id" bind:value={rate._id} />
                                             <button type="submit">Confirm Edit</button>
                                         </form>
                                     {/if}
