@@ -1,12 +1,14 @@
 import { Model, Schema, model } from "mongoose";
 
 export interface BlogEntry {
+    _id: string;
     title: string;
-    content: string;
     contentLink: string;
+    content: string;
     date: Date;
 }
 
+// TODO: find a use for this
 export const isBlogEntry = (value: unknown): value is BlogEntry => {
     return (
         value !== null &&
@@ -21,7 +23,7 @@ export const isBlogEntry = (value: unknown): value is BlogEntry => {
 const blogEntrySchema = new Schema<BlogEntry>({
     title: { type: String, required: true },
     content: { type: String, required: true },
-    contentLink: { type: String, required: true },
+    contentLink: { type: String },
     date: { type: Date, required: true },
 });
 

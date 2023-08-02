@@ -117,11 +117,11 @@
                 </div>
                 <div class="input-group">
                     <label for="name">Youth Price</label>
-                    <input type="text" name="youth-price" id="youth-price" placeholder="e.g. 100" />
+                    <input type="number" name="youth-price" id="youth-price" placeholder="e.g. 100" />
                 </div>
                 <div class="input-group">
                     <label for="name">Adult Price</label>
-                    <input type="text" name="adult-price" id="adult-price" placeholder="e.g. 100" required />
+                    <input type="number" name="adult-price" id="adult-price" placeholder="e.g. 100" required />
                 </div>
                 <button type="submit">Create New Lesson Rate</button>
                 {#if form?.createSuccess !== undefined}
