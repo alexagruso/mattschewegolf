@@ -6,6 +6,8 @@
     let show = false;
 </script>
 
+<!-- TODO: tweak z-index to have dropdown behind navbar -->
+
 <nav class="col" data-sveltekit-reload>
     <div class="row hamburger" class:shadow={!show}>
         <div class="row pga">

@@ -29,9 +29,13 @@ export const actions: Actions = {
                     adultPrice: data["adult-price"],
                 },
             );
+
+            return { editSuccess: true };
         } catch (error) {
             console.error(error);
             console.error("ERROR: failed to edit lesson rate");
+
+            return { editSuccess: false };
         }
     },
 
@@ -40,9 +44,13 @@ export const actions: Actions = {
             const data = Object.fromEntries(await event.request.formData());
 
             await axios.delete(`${HOST}/api/rates`, { data: { id: data.id } });
+
+            return { deleteSuccess: true };
         } catch (error) {
             console.error(error);
             console.error("ERROR: failed to delete lesson rate");
+
+            return { deleteSuccess: false };
         }
     },
 
@@ -55,18 +63,34 @@ export const actions: Actions = {
                 youthPrice: data["youth-price"],
                 adultPrice: data["adult-price"],
             });
+
+            return { createSuccess: true, createMessage: "Successfully created new lesson package" };
         } catch (error) {
             console.error(error);
             console.error("ERROR: failed to create lesson rate");
+
+            let message = "Failed to create new lesson package, try again later";
+
+            if (typeof error === "object" && (error as { code: number }).code === 11000) {
+                message = "Cannot create packages with duplicate names";
+            }
+
+            return { createSuccess: false, createMessage: message };
         }
     },
 
     email: async (event) => {
         try {
             const data = Object.fromEntries(await event.request.formData());
+
+            await axios.post(`${HOST}/api/email`, data);
+
+            return { emailSuccess: true };
         } catch (error) {
             console.error(error);
             console.error("ERROR: failed to send email");
+
+            return { createSuccess: false };
         }
     },
 };

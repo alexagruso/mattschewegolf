@@ -2,26 +2,31 @@
     import { enhance } from "$app/forms";
     import { invalidateAll } from "$app/navigation";
     import { page } from "$app/stores";
-    import type { PageServerData } from "./$types";
+    import type { ActionData, PageServerData } from "./$types";
 
     let editID: string;
+
+    let allowEmailSubmission = true;
 
     const resetEditForm = async () => {
         await invalidateAll();
         editID = "";
     };
 
-    export let data: PageServerData;
-</script>
+    const handleEmail = () => {
+        allowEmailSubmission = false;
+    };
 
-<!-- TODO: convert these forms to sveltekit form actions. -->
+    export let data: PageServerData;
+    export let form: ActionData;
+</script>
 
 <section class="col card">
     <div class="col intro">
         <h1 class="title">Lesson Rates</h1>
         <p class="subtitle">
             Matt offers several lesson packages, as well as discounts for youth lessons. To schedule a lesson, contact
-            Matt directly or fill out the contact form below.
+            Matt directly or fill out the contact form.
         </p>
     </div>
     <div class="col content">
@@ -107,12 +112,11 @@
         <h3 class="disclaimer">
             -- Indicates a lesson package that is unavailable. Lesson packages are non-refundable.
         </h3>
-        <!-- BUG: likewise here, the "onsubmit" attribute is causing an annoying error. -->
         {#if $page.data.currentSession}
             <form class="col rate-form" action="?/create" method="post" on:submit={invalidateAll} use:enhance>
                 <div class="input-group">
                     <label for="name">Package Name</label>
-                    <input type="text" name="name" id="name" placeholder="e.g. 1 Half Hour Lesson" />
+                    <input type="text" name="name" id="name" placeholder="e.g. 1 Half Hour Lesson" required />
                 </div>
                 <div class="input-group">
                     <label for="name">Youth Price</label>
@@ -120,70 +124,47 @@
                 </div>
                 <div class="input-group">
                     <label for="name">Adult Price</label>
-                    <input type="text" name="adult-price" id="adult-price" placeholder="e.g. 100" />
+                    <input type="text" name="adult-price" id="adult-price" placeholder="e.g. 100" required />
                 </div>
                 <button type="submit">Create New Lesson Rate</button>
+                {#if form?.createSuccess !== undefined}
+                    <h2>{form?.createMessage}</h2>
+                {/if}
             </form>
         {/if}
     </div>
 </section>
 <section class="col card contact">
     <div class="col content">
-        <!-- BUG: for some reason, this form element won't accept the "onsubmit" attribute, yet including it achieves the
-            goal of preventing form submission from reloading html. Linter bug maybe? Potential fix: convert to form action -->
-        <!-- FIX: converting to form action and adding "use:enhance" removes the need for "onsubmit" -->
-        <!-- <form
-            class="col"
-            on:submit={allowSubmission
-                ? async () => await validateForm()
-                : () => {
-                      status = "Email already sent, cannot send again.";
-                  }}
-            onsubmit="return false;">
-            <input
-                bind:value={name}
-                class:invalid-input={nameStatus === InputStatus.Invalid}
-                type="text"
-                id="name"
-                placeholder="e.g. John Doe" />
-            <div class="row sender-contact">
-                <input
-                    bind:value={email}
-                    class:invalid-input={emailStatus === InputStatus.Invalid}
-                    type="email"
-                    name="email"
-                    id="email"
-                    placeholder="Email *" />
-                <input
-                    bind:value={phone}
-                    class:invalid-input={phoneStatus === InputStatus.Invalid}
-                    type="text"
-                    id="phone"
-                    placeholder="Phone *" />
-            </div>
-            <textarea
-                bind:value={content}
-                class:invalid-input={contentStatus === InputStatus.Invalid}
-                id="content"
-                placeholder="Message *" />
-            <button type="submit" class:submission-disabled={!allowSubmission}>Send Message</button>
-        </form> -->
-        <form class="col" action="?/email" method="post" use:enhance>
+        <form class="col" action="?/email" method="post" on:submit={handleEmail} use:enhance>
             <div class="input-group">
                 <label for="name">Name</label>
-                <input type="text" name="name" id="name" placeholder="e.g. John Doe" />
+                <input type="text" name="name" id="name" placeholder="e.g. John Smith" required />
             </div>
             <div class="row sender-contact">
                 <div class="input-group">
                     <label for="email">Email</label>
-                    <input type="email" name="email" id="email" placeholder="Email *" />
+                    <input type="email" name="email" id="email" placeholder="e.g. john@email.com" required />
                 </div>
 
                 <div class="input-group">
                     <label for="email">Phone</label>
-                    <input type="tel" name="phone" id="phone" placeholder="e.g. (123) 456-7890" />
+                    <input type="tel" name="phone" id="phone" placeholder="e.g. (123) 456-7890" required />
                 </div>
             </div>
+            <div class="input-group">
+                <label for="content">Message</label>
+                <textarea name="content" id="content" placeholder="Message will be sent to Matt" required />
+            </div>
+            {#if allowEmailSubmission}
+                <button type="submit">Send Email</button>
+            {:else if form?.emailSuccess === true}
+                <h2>Email successfully sent.</h2>
+            {:else if form?.emailSuccess === false}
+                <h2>Email failed to send, please try again later.</h2>
+            {:else}
+                <h2>Sending email...</h2>
+            {/if}
         </form>
     </div>
     <div class="col intro">
@@ -283,6 +264,10 @@
 
     tbody .entry:nth-child(2n-1) {
         background-color: mix($primary-5, white, 50%);
+
+        button:not(:hover) {
+            background-color: mix($primary-5, white, 50%);
+        }
     }
 
     tr {
@@ -418,6 +403,7 @@
         display: flex;
         gap: 0.5rem;
         flex-direction: column;
+        flex-grow: 1;
     }
 
     .rate-form {
@@ -426,5 +412,9 @@
 
     .form-id {
         display: none;
+    }
+
+    h2 {
+        color: $accent-2;
     }
 </style>
