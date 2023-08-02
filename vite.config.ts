@@ -7,7 +7,10 @@ const env = loadEnv("", process.cwd(), "");
 export default defineConfig({
     plugins: [sveltekit()],
     server: {
-        port: parseInt(env.PORT ?? "5000"),
+        port: parseInt(env.PORT),
+    },
+    preview: {
+        port: parseInt(env.PORT),
     },
     test: {
         include: ["src/**/*.{test,spec}.{js,ts}"],
