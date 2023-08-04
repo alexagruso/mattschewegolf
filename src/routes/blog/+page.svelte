@@ -139,6 +139,7 @@
             font-weight: 500;
             text-align: justify;
             color: $primary-1;
+            white-space: pre-wrap;
         }
 
         @include tablet-and-below {
