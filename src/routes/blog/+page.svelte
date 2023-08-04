@@ -16,8 +16,6 @@
     export let form: ActionData;
 </script>
 
-<!-- TODO: fix dates for blog entries -->
-
 {#if $page.data.currentSession}
     <section class="col card">
         <div class="accent">
@@ -47,13 +45,13 @@
 {/if}
 
 {#if data?.blogEntries?.length === 0}
-    <h2>Nothing posted yet...</h2>
+    <h2 class="empty">Nothing posted yet...</h2>
 {:else if data.blogEntries}
     {#each data.blogEntries as entry}
         <section class="col card entry">
-            <div class="accent">
+            <div class="col accent">
                 <h2>{entry.title}</h2>
-                <!-- <p>{formatDate(entry.date)}</p> -->
+                <h3>Posted on {entry.date}</h3>
             </div>
             <div class="col content">
                 <p>{entry.content}</p>
@@ -150,6 +148,8 @@
     }
 
     .accent {
+        gap: 1rem;
+
         padding: 2rem;
 
         background-color: $accent-2;
@@ -187,10 +187,18 @@
     }
 
     h2 {
-        align-self: center;
+        &.empty {
+            align-self: center;
+        }
 
         font-size: $header-5;
         color: $primary-3;
+    }
+
+    h3 {
+        font-size: $header-4;
+        font-weight: 500;
+        color: $primary-6;
     }
 
     label {

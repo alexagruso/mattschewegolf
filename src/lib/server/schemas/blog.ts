@@ -5,7 +5,7 @@ export interface BlogEntry {
     title: string;
     contentLink: string;
     content: string;
-    date: Date;
+    date: string;
 }
 
 // TODO: find a use for this
@@ -24,7 +24,7 @@ const blogEntrySchema = new Schema<BlogEntry>({
     title: { type: String, required: true },
     content: { type: String, required: true },
     contentLink: { type: String },
-    date: { type: Date, required: true },
+    date: { type: String, required: true },
 });
 
 let blogEntries: Model<BlogEntry>;

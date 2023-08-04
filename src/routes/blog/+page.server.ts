@@ -46,7 +46,7 @@ export const actions: Actions = {
                 title: data.title,
                 content: data.content,
                 contentLink: data["content-link"] ?? null,
-                date: new Date(),
+                date: new Date().toLocaleDateString(),
             });
 
             return { createSuccess: true, createMessage: "Successfully created new blog entry" };
