@@ -1,10 +1,45 @@
-$header-1: clamp(3rem, 8vw, 4.25rem);
-$header-2: clamp(2rem, 9vw, 3.25rem);
-$header-3: clamp(1.75rem, 7vw, 2.375rem);
-$header-4: clamp(1.25rem, 5vw, 1.75rem);
+@use "./colors" as *;
+
+$header-1: clamp(3rem, 10vw, 4rem);
+$header-2: clamp(2rem, 8vw, 3rem);
+$header-3: clamp(1rem, 6vw, 2rem);
+$header-4: clamp(1rem, 2vw, 1.5rem);
 $header-5: clamp(0.875rem, 3vw, 1.375rem);
 $header-6: clamp(0.75rem, 2vw, 1rem);
 
 $paragraph: clamp(0.875rem, 5vw, 1.125rem);
 
 $navbar-link: 1rem;
+
+@mixin card-title {
+    font-family: "Lora";
+    font-size: $header-2;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+@mixin card-subtitle {
+    font-family: "Lora";
+    font-size: $header-4;
+    font-weight: 500;
+}
+
+@mixin header-title {
+    font-family: "Lora";
+    font-size: $header-1;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+@mixin header-subtitle {
+    font-family: "Lora";
+    font-size: $header-3;
+    font-weight: 600;
+}
+
+@mixin paragraph {
+    font-family: "Lora";
+    font-size: $paragraph;
+    font-weight: 500;
+    text-align: justify;
+}

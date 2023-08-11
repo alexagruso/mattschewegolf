@@ -22,13 +22,13 @@
 </script>
 
 <section class="col card">
-    <div class="col intro">
+    <header class="col">
         <h1 class="title">Lesson Rates</h1>
-        <p class="subtitle">
+        <h2 class="subtitle">
             Matt offers several lesson packages, as well as discounts for youth lessons. To schedule a lesson, contact
             Matt directly or fill out the contact form.
-        </p>
-    </div>
+        </h2>
+    </header>
     <div class="col content">
         <table>
             <thead class="col">
@@ -132,6 +132,14 @@
     </div>
 </section>
 <section class="col card contact">
+    <header class="col">
+        <h1 class="title">Contact</h1>
+        <h2 class="subtitle">
+            Matt can be contacted through email at <span class="highlight">matt@mattschewegolf.com</span> or by phone at
+            <span class="highlight">(713) 291-8861</span>. Alternatively, he can be contacted by filling out and
+            submitting the contact form.
+        </h2>
+    </header>
     <div class="col content">
         <form class="col" action="?/email" method="post" on:submit={handleEmail} use:enhance>
             <div class="input-group">
@@ -164,54 +172,35 @@
             {/if}
         </form>
     </div>
-    <div class="col intro">
-        <h1 class="title">Contact</h1>
-        <p class="subtitle">
-            Matt can be contacted through email at <span class="highlight">matt@mattschewegolf.com</span> or by phone at
-            <span class="highlight">(713) 291-8861</span>. Alternatively, he can be contacted by filling out and
-            submitting the contact form.
-        </p>
-    </div>
 </section>
 
 <style lang="scss">
     .card {
-        box-shadow: 0rem 0.25rem 1rem 0.25rem rgba(black, 0.25);
+        @include card-box-shadow;
 
-        color: $primary-1;
-        margin: 0rem;
-
-        &.contact {
-            flex-direction: column-reverse;
-        }
+        margin: 0rem 4rem;
+        max-width: 70rem;
     }
 
-    .intro {
-        gap: 2rem;
+    header {
+        gap: 1rem;
 
         padding: 2rem;
-        width: 100%;
 
         background-color: $accent-2;
 
         color: $primary-6;
 
-        @include tablet-and-below {
-            width: 100%;
+        h1 {
+            @include header-title;
         }
-    }
 
-    .title {
-        font-size: $header-2;
-        text-transform: uppercase;
-    }
+        h2 {
+            max-width: 65%;
 
-    .subtitle {
-        font-size: $paragraph;
-        font-weight: 400;
+            color: $primary-6;
 
-        @include desktop {
-            max-width: 40%;
+            @include paragraph;
         }
     }
 

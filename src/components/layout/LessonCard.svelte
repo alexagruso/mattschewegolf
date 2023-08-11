@@ -2,8 +2,8 @@
     import ButtonLink from "@components/interactive/ButtonLink.svelte";
 </script>
 
-<section class="row card">
-    <div class="col text center">
+<section class="card">
+    <div class="col text">
         <h1 class="title">30 years of excellence<br />in every lesson</h1>
         <h2 class="subtitle">
             As a 30+ year member of the PGA and top five teacher in Southern Texas, Matt brings decades of experience to
@@ -12,61 +12,81 @@
         <ButtonLink href="/lessons">View Lesson Rates</ButtonLink>
     </div>
     <div class="col image">
-        <img src="images/matt/lessonsection.png" alt="matt schewe during a lesson" />
+        <img src="images/matt/lessons.webp" alt="matt schewe during a lesson" />
     </div>
 </section>
 
 <style lang="scss">
     .card {
+        display: flex;
         flex-direction: row-reverse;
 
-        margin: 0rem;
-        box-shadow: 0rem 0.25rem 1rem 0.25rem rgba(black, 0.25);
+        margin: 0rem 4rem;
+        max-width: 70rem;
 
-        background-color: $primary-6;
+        @include card-box-shadow;
 
         @include tablet-portrait-and-below {
+            margin: 0rem;
+        }
+
+        @include tablet-and-below {
             flex-direction: column;
         }
     }
 
     .text {
-        flex-grow: 1;
-        flex-basis: 1rem;
+        justify-content: center;
+        align-items: center;
         gap: 2rem;
 
-        padding: 4rem 0rem;
-    }
+        padding: 1rem 2rem;
 
-    .title {
-        font-size: $header-2;
-        text-align: center;
-        text-transform: uppercase;
-        color: $primary-1;
-    }
+        h1 {
+            text-align: center;
 
-    .subtitle {
-        max-width: 70%;
+            @include card-title;
+        }
 
-        font-size: $paragraph;
-        font-weight: 400;
-        text-align: center;
-        color: $primary-3;
+        h2 {
+            max-width: 90%;
+
+            text-align: center;
+
+            @include card-subtitle;
+
+            @include tablet-and-below {
+                max-width: 80%;
+
+                text-align: justify;
+            }
+        }
+
+        @include tablet-and-below {
+            padding: 2rem;
+        }
+
+        @include phone {
+            padding: 2rem 0rem;
+        }
     }
 
     .image {
-        flex-grow: 0.5;
-        flex-basis: 1rem;
-        justify-content: center;
-
-        background-color: $accent-2;
+        @include tablet-and-below {
+            background-color: $accent-2;
+        }
     }
 
     img {
-        object-fit: contain;
+        object-fit: scale-down;
+        height: 35rem;
 
         @include tablet-portrait-and-below {
-            max-height: 30vh;
+            height: 30rem;
+        }
+
+        @include tablet-and-below {
+            height: 25rem;
         }
     }
 </style>

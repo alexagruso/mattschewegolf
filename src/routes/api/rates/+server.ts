@@ -1,6 +1,5 @@
 import { guardEndpoint } from "@lib/server/authentication/guards";
 import { rates } from "@lib/server/schemas/rate";
-import { sessions } from "@lib/server/schemas/session";
 import { json, type RequestHandler } from "@sveltejs/kit";
 
 export const GET: RequestHandler = async () => {
