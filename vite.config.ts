@@ -5,11 +5,18 @@ import { sveltekit } from "@sveltejs/kit/vite";
 const env = loadEnv("", process.cwd(), "");
 
 export default defineConfig({
+    css: {
+        preprocessorOptions: {
+            scss: {
+                additionalData: `@use "$lib/scss/global.scss" as *;`,
+            },
+        },
+    },
     plugins: [sveltekit()],
-    server: {
+    preview: {
         port: parseInt(env.PORT),
     },
-    preview: {
+    server: {
         port: parseInt(env.PORT),
     },
     test: {

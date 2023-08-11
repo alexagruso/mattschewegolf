@@ -1,3 +1,5 @@
+<!-- TODO clean up layout -->
+
 <div class="row card biography">
     <div class="row image">
         <img src="images/matt/about.png" alt="matt schewe during a lesson" />
@@ -52,11 +54,14 @@
         background-color: $accent-2;
 
         img {
-            position: absolute;
+            // z-index: 1;
+            // position: absolute;
             top: 2rem;
             left: 2rem;
 
-            width: 100%;
+            width: 15rem;
+
+            object-fit: scale-down;
 
             @include tablet-portrait-and-below {
                 position: relative;
@@ -67,8 +72,6 @@
 
                 width: unset;
                 height: 100%;
-
-                object-fit: scale-down;
             }
         }
 
@@ -104,8 +107,6 @@
 
     .text {
         gap: 1.5rem;
-
-        // padding: 1rem;
 
         color: $primary-2;
 

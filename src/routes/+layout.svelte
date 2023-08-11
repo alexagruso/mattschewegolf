@@ -9,7 +9,7 @@
 </main>
 <Footer />
 
-<style lang="scss">
+<style lang="scss" global>
     main {
         flex-grow: 1;
         gap: clamp(3rem, 1vh, 4rem);

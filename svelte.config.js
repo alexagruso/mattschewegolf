@@ -1,5 +1,5 @@
 import adapter from "@sveltejs/adapter-node";
-import preprocess from "svelte-preprocess";
+import { vitePreprocess } from "@sveltejs/kit/vite";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -12,13 +12,13 @@ const config = {
             "@components": "./src/components",
             "@lib/*": "./src/lib/*",
             "@schemas/*": "./src/lib/server/schemas/*",
-            "@scss/*": "./src/scss/*",
             "@server/*": "./src/lib/server/*",
         },
         csrf: {
             checkOrigin: false,
         },
     },
+    // suppresses css warnings about unused selectors
     onwarn: (warning, handler) => {
         const { code } = warning;
 
@@ -28,11 +28,7 @@ const config = {
 
         handler(warning);
     },
-    preprocess: preprocess({
-        scss: {
-            prependData: `@import "${process.cwd()}/src/scss/_global";`,
-        },
-    }),
+    preprocess: vitePreprocess(),
 };
 
 export default config;

@@ -7,6 +7,3 @@
 <HeroCard />
 <LessonCard />
 <BlogSection />
-
-<style lang="scss">
-</style>

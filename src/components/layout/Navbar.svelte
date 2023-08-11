@@ -55,7 +55,6 @@
     nav {
         position: sticky;
         // HACK: about page card is forcing this hack, please fix
-        z-index: 3;
         top: 0rem;
 
         display: block;
@@ -106,6 +105,8 @@
     }
 
     .content {
+        z-index: 3;
+
         justify-content: space-between;
         align-items: center;
 
@@ -134,7 +135,7 @@
     .links {
         gap: 0.5rem;
 
-        transition: all 500ms cubic-bezier(0.98, 0, 0.1, 0.98);
+        transition: all 1000ms cubic-bezier(0.98, 0, 0.1, 0.98);
 
         @include tablet-and-below {
             position: absolute;
@@ -153,7 +154,7 @@
 
     .hide {
         @include tablet-and-below {
-            top: -50vh;
+            top: -100vh;
         }
     }
 

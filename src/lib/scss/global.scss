@@ -1,0 +1,41 @@
+@forward "./colors";
+@forward "./layouts";
+@forward "./typography";
+
+@use "./colors" as *;
+
+@font-face {
+    font-family: "Lora";
+    src: url("/fonts/Lora.ttf");
+}
+
+:global(*) {
+    margin: 0rem;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 0rem;
+
+    font-family: "Lora";
+    font-weight: 700;
+    text-decoration: none;
+    color: inherit;
+}
+
+:global(html) {
+    position: relative;
+
+    font-size: 16px;
+    color: $primary-1;
+}
+
+:global(body) {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 100vh;
+
+    background-color: $primary-6;
+}
