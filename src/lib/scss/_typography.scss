@@ -46,13 +46,14 @@ $navbar-link: 1rem;
 
 @mixin navbar-title {
     font-family: "Lora";
-    font-size: $header-2;
-    font-weight: 500;
+    font-size: clamp(1rem, 3rem, 3rem);
+    font-weight: 700;
+    line-height: 100%;
 }
 
 @mixin navbar-subtitle {
     font-family: "Lora";
-    font-size: $header-3;
+    font-size: clamp(1rem, 2vw, 1.125rem);
     font-weight: 500;
 }
 

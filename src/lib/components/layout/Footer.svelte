@@ -17,16 +17,16 @@
                 <span>matt@mattschewegolf.com</span>
                 <div class="row social">
                     <a href="https://twitter.com/mattschewegolf?lang=en" target="_blank">
-                        <img src="images/footer/twitter.png" alt="twitter" />
+                        <img src="images/footer/twitter.webp" alt="twitter" />
                     </a>
                     <a href="https://www.facebook.com/matt.schewe.1" target="_blank">
-                        <img src="images/footer/facebook.png" alt="facebook" />
+                        <img src="images/footer/facebook.webp" alt="facebook" />
                     </a>
                     <a href="https://www.instagram.com/golfpromattschewepga/" target="_blank">
-                        <img src="images/footer/instagram.png" alt="instagram" />
+                        <img src="images/footer/instagram.webp" alt="instagram" />
                     </a>
                     <a href="https://www.youtube.com/channel/UCLMlW7yX0chNKrdTu3hC5NA" target="_blank">
-                        <img src="images/footer/youtube.png" alt="youtube" />
+                        <img src="images/footer/youtube.webp" alt="youtube" />
                     </a>
                 </div>
                 <DarkButtonLink href="/lessons">Schedule A Lesson</DarkButtonLink>

@@ -18,6 +18,9 @@
 
 <style lang="scss">
     .card {
+        display: flex;
+        flex-direction: row-reverse;
+
         margin: 0rem 4rem;
         max-width: 70rem;
 

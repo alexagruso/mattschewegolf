@@ -1,11 +1,11 @@
 <script lang="ts">
 </script>
 
-<nav class="col">
+<nav class="row">
     <div class="row content">
         <div class="row logo">
             <img src="images/navbar/pga.webp" alt="PGA Logo" />
-            <div class="col text">
+            <div class="col">
                 <h1>Matt Schewe</h1>
                 <p class="row">
                     School of Golf<span class="sep" />(713) 291-8861<span class="sep" />matt@mattschewegolf.com
@@ -26,40 +26,26 @@
         position: sticky;
         top: 0rem;
 
-        justify-content: center;
         align-items: center;
 
-        padding: 0.5rem;
+        width: 100%;
 
         background-color: $accent-2;
 
         @include navbar-shadow;
     }
 
-    a {
-        transition: background-color 150ms;
-
-        border-radius: 0.75rem;
-        padding: 0.5rem 2rem;
-
-        text-transform: lowercase;
-        color: $primary-6;
-
-        @include navbar-link;
-
-        &:hover {
-            background-color: rgba($accent-4, 50%);
-        }
-    }
-
     .content {
         justify-content: space-between;
         align-items: center;
+        flex-grow: 1;
+
+        padding: 0.5rem 8rem;
     }
 
     .logo {
         align-items: center;
-        gap: 1rem;
+        gap: 0.5rem;
 
         h1 {
             text-transform: uppercase;
@@ -87,10 +73,6 @@
         }
     }
 
-    .links {
-        gap: 1rem;
-    }
-
     span.sep {
         display: block;
 
@@ -100,5 +82,26 @@
         height: 0.375rem;
 
         background-color: $primary-6;
+    }
+
+    .links {
+        align-items: center;
+        gap: 1rem;
+    }
+
+    a {
+        transition: background-color 150ms;
+
+        border-radius: 0.75rem;
+        padding: 0.5rem 2rem;
+
+        text-transform: lowercase;
+        color: $primary-6;
+
+        @include navbar-link;
+
+        &:hover {
+            background-color: rgba($accent-4, 50%);
+        }
     }
 </style>
