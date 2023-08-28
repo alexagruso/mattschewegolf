@@ -1,3 +1,7 @@
 @mixin card-box-shadow {
     box-shadow: 0rem 0rem 0.375rem rgba(black, 0.25);
 }
+
+@mixin navbar-shadow {
+    box-shadow: 0rem 0rem 0.375rem rgba(black, 0.25);
+}

@@ -43,3 +43,21 @@ $navbar-link: 1rem;
     font-weight: 500;
     text-align: justify;
 }
+
+@mixin navbar-title {
+    font-family: "Lora";
+    font-size: $header-2;
+    font-weight: 500;
+}
+
+@mixin navbar-subtitle {
+    font-family: "Lora";
+    font-size: $header-3;
+    font-weight: 500;
+}
+
+@mixin navbar-link {
+    font-family: "Lora";
+    font-size: $paragraph;
+    font-weight: 500;
+}
