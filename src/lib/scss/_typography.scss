@@ -53,7 +53,7 @@ $navbar-link: 1rem;
 
 @mixin navbar-subtitle {
     font-family: "Lora";
-    font-size: clamp(1rem, 2vw, 1.125rem);
+    font-size: clamp(1rem, 3vw, 1.125rem);
     font-weight: 500;
 }
 
