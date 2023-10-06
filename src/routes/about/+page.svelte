@@ -3,7 +3,7 @@
         <img src="images/matt/about.webp" alt="matt schewe during a lesson" />
         <div class="col label">
             <h1 class="title">Biography</h1>
-            <h2 class="subtitle">About matt</h2>
+            <h2 class="subtitle">About Matt</h2>
         </div>
     </header>
     <div class="col biography">
@@ -23,8 +23,8 @@
             philosophy is to approach the game of golf and life with a positive attitude. He is always smiling and happy
             and if asked will tell you it is because he loves what he gets to do everyday! Over the years, Matt has
             taught many notable students such as basketball stars, Penny Hardaway, Sam Cassell and Vernon Maxwell and
-            NFL star Lemuel Stinson. He has had the privilege of teaching actors Kurt Russell and Sally Field and the
-            famous rapper, Scarface. He has also taught countless other celebrities and professional athletes.
+            NFL star Lemuel Stinson. He has had the privilege of teaching actors Kurt Russell and Sally Field, as well as the
+            famous rapper Scarface. He has also taught countless other celebrities and professional athletes.
         </p>
     </div>
 </div>
