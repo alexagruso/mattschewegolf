@@ -41,7 +41,7 @@ $header-6: 1rem;
 // longer paragraphs
 @mixin paragraph {
     font-family: "Lora";
-    font-size: $header-5;
+    font-size: clamp($header-6, 3vw, $header-5);
     font-weight: 500;
 }
 
