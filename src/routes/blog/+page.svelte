@@ -133,7 +133,7 @@
         padding: 2rem;
 
         p {
-            font-size: $paragraph;
+            // font-size: $paragraph;
             font-weight: 500;
             text-align: justify;
             color: $primary-1;
@@ -162,7 +162,7 @@
         }
 
         p {
-            font-size: $paragraph;
+            // font-size: $paragraph;
             font-weight: 400;
             color: $primary-6;
         }

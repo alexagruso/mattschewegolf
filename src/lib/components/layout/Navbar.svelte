@@ -1,53 +1,40 @@
 <script lang="ts">
-    let showDropdown = false;
+    import Hamburger from "./navbar/Hamburger.svelte";
+    import SideMenu from "./navbar/SideMenu.svelte";
+
+    let hamburger: Hamburger;
+    let menu: SideMenu;
 </script>
 
 <nav class="row" data-sveltekit-reload>
     <div class="row content">
         <div class="row logo">
-            <img src="images/navbar/pga.webp" alt="PGA Logo" />
+            <div class="image">
+                <a href="https://www.pga.com" target="_blank">
+                    <img src="images/navbar/pga.webp" alt="PGA Logo" />
+                </a>
+            </div>
             <div class="col text">
                 <h1>Matt Schewe</h1>
                 <div class="row subtitle">
-                    <span class="tablet-below">Matt Schewe School of Golf</span>
-                    <span class="tablet-below-omit">School of Golf</span>
-                    <span class="sep" />(713) 291-8861
-                    <span class="sep" />matt@mattschewegolf.com
+                    <h2>School of Golf</h2>
+                    <span class="sep" />
+                    <h2>(713) 291-8861</h2>
+                    <span class="sep" />
+                    <h2>matt@mattschewegolf.com</h2>
                 </div>
             </div>
         </div>
-        <div class:active={showDropdown} class="row links">
-            <img src="images/navbar/pga.webp" alt="PGA Logo" />
-            <hr />
+        <div class="row links">
             <a href="/">Home</a>
             <a href="/about">About</a>
             <a href="/lessons">Lessons</a>
             <a href="/blog">Blog</a>
-            <hr />
-            <div class="col menu-info bold">
-                <span class="break">Matt Schewe</span>
-                <span class="break">School of Golf</span>
-            </div>
-            <hr />
-            <div class="col menu-info">
-                <span class="break">(713) 291-8861</span>
-            </div>
-            <hr />
-            <div class="menu-info">
-                <span class="break">matt@</span>
-                <span class="break">mattschewegolf</span>
-                <span class="break">.com</span>
-            </div>
         </div>
-        <button
-            class="col hamburger"
-            on:click={() => {
-                showDropdown = !showDropdown;
-            }}>
-            <div class:active={showDropdown} class="slice" id="a" />
-            <div class:active={showDropdown} class="slice" id="b" />
-            <div class:active={showDropdown} class="slice" id="c" />
-        </button>
+        <div class="side-menu">
+            <Hamburger bind:this={hamburger} on:toggle={menu.toggle} />
+            <SideMenu bind:this={menu} on:close={hamburger.close} />
+        </div>
     </div>
 </nav>
 
@@ -55,11 +42,12 @@
     nav {
         position: sticky;
         top: 0rem;
+        left: 0rem;
 
         justify-content: center;
         align-items: center;
 
-        padding: 0.5rem;
+        max-height: 7rem;
 
         background-color: $accent-2;
 
@@ -70,207 +58,101 @@
         justify-content: space-between;
         align-items: center;
 
-        width: 95rem;
+        padding: 0.5rem;
+        width: 90rem;
     }
 
     .logo {
         align-items: center;
         gap: 0.5rem;
 
-        h1 {
-            text-transform: uppercase;
-            color: $primary-6;
+        // background-color: blue;
 
-            @include navbar-title;
+        .image {
+            border-radius: 0.75rem;
+            padding: 0.25rem;
 
-            @include tablet-and-below {
-                display: none;
-            }
+            background-color: white;
+        }
+
+        img {
+            object-fit: scale-down;
+
+            max-height: 4.5rem;
         }
 
         .subtitle {
             align-items: center;
+            gap: 0.5rem;
 
-            color: $primary-6;
-
-            @include navbar-subtitle;
-
-            @include tablet {
+            @include tablet-portrait-and-below {
                 flex-direction: column;
                 align-items: start;
+                gap: 0.25rem;
             }
 
             @include phone {
                 display: none;
             }
         }
-    }
 
-    img {
-        border-radius: 0.5rem;
-        padding: 0.25rem;
-        max-height: clamp(4rem, 20vw, 5rem);
-        width: 4rem;
+        h1 {
+            color: $primary-6;
 
-        object-fit: scale-down;
-
-        // to accommodate pga image
-        background-color: white;
-
-        .links & {
-            display: none;
-
-            margin: 0.5rem 0 0 1.5rem;
+            @include navbar-title;
 
             @include tablet-portrait-and-below {
-                display: block;
+                display: none;
             }
         }
-    }
 
-    .sep {
-        align-items: center;
+        h2 {
+            color: $primary-6;
 
-        display: block;
-
-        margin: 0rem 0.5rem;
-        border-radius: 50%;
-        width: 0.375rem;
-        height: 0.375rem;
-
-        background-color: $primary-6;
-
-        color: $primary-6;
-
-        @include tablet-and-below {
-            width: 0;
-        }
-    }
-
-    .tablet-below {
-        @include desktop {
-            display: none;
+            @include navbar-subtitle;
         }
 
-        @include tablet-portrait {
-            display: none;
-        }
-    }
+        .sep {
+            border-radius: 50%;
+            width: 0.35rem;
+            height: 0.35rem;
 
-    .tablet-below-omit {
-        @include tablet-and-below {
-            display: none;
+            background-color: $primary-6;
+
+            @include tablet-portrait-and-below {
+                display: none;
+            }
         }
     }
 
     .links {
-        gap: 0.5rem;
+        gap: 0.25rem;
 
-        padding: 0.5rem;
-
-        @include tablet-portrait-and-below {
-            position: absolute;
-            top: 0;
-            left: -100vw;
-            flex-direction: column;
-            display: flex;
-
-            opacity: 0;
-            transition: opacity 300ms step-end, left 300ms ease-in-out;
-
-            // 68% works just right for 280px
-            width: max(10rem, 68%);
-            height: 100vh;
-
-            background-color: mix($accent-1, $accent-2, 50%);
-
-            @include navbar-shadow;
-
-            &.active {
-                left: 0rem;
-
-                opacity: 1;
-
-                transition: opacity 100ms, left 300ms;
-            }
+        @include tablet-and-below {
+            display: none;
         }
 
-        hr {
-            margin: 0.75rem;
-            height: 1px;
+        a {
+            transition: background-color 200ms;
 
-            background-color: $primary-6;
-        }
-    }
+            border-radius: 1rem;
+            padding: 0.5rem 1.25rem;
 
-    .menu-info {
-        display: none;
-
-        padding: 0 1.25rem;
-
-        color: $primary-6;
-
-        @include navbar-link;
-
-        @include tablet-portrait-and-below {
-            display: flex;
-        }
-
-        .break {
-            display: inline-block;
+            color: $primary-6;
 
             @include navbar-link;
+
+            &:hover {
+                background-color: $accent-3;
+            }
         }
     }
 
-    a {
-        transition: background-color 100ms, color 100ms;
-
-        border-radius: 1rem;
-        padding: 0.5rem 1.5rem;
-
-        text-transform: lowercase;
-        color: $primary-6;
-
-        @include navbar-link;
-
-        &:hover {
-            background-color: rgba($accent-4, 50%);
-        }
-    }
-
-    .hamburger {
+    .side-menu {
         display: none;
 
-        margin-right: 1rem;
-
-        @include tablet-portrait-and-below {
-            display: flex;
-            gap: 0.5rem;
-
-            background-color: $accent-2;
+        @include tablet-and-below {
+            display: block;
         }
-    }
-
-    .slice {
-        transition: transform 200ms, opacity 100ms;
-
-        border-radius: 1rem;
-        width: 2.75rem;
-        height: 0.375rem;
-
-        background-color: $primary-6;
-    }
-
-    #a.active {
-        transform: translateY(0.875rem) rotateZ(43deg);
-    }
-
-    #b.active {
-        opacity: 0;
-    }
-
-    #c.active {
-        transform: translateY(-0.875rem) rotateZ(-43deg);
     }
 </style>

@@ -20,6 +20,11 @@
     }
 }
 
+// for break points
+span.break {
+    display: inline-block;
+}
+
 // 384px - 384px - 416px
 $phone-max-size: 24rem;
 $tablet-max-size: 48rem;

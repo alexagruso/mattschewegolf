@@ -1,3 +1,4 @@
+@forward "./animations";
 @forward "./colors";
 @forward "./effects";
 @forward "./layouts";
@@ -26,8 +27,6 @@
 }
 
 :global(html) {
-    position: relative;
-
     font-size: 16px;
     color: $primary-1;
 }
@@ -40,4 +39,8 @@
 
     background-color: $primary-6;
     overflow-x: hidden;
+}
+
+:global(img) {
+    display: block;
 }
