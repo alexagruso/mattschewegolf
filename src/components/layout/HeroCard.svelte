@@ -6,9 +6,9 @@
     <div class="col text center">
         <h1 class="title">Matt Schewe:<br />Your Next<br />Golf Coach</h1>
         <h2 class="subtitle">
-            Matt Schewe, winner of the STPGA Teacher of the Year Award, is a Houston based golf instructor with over 30
-            years of teaching experience. He teaches an effortless golf swing that is repeatable and easy to learn. Find
-            out more about what makes him uniquely qualified:
+            Matt Schewe, winner of the 2023 STPGA Teacher of the Year Award, is a Houston based golf instructor with
+            over 30 years of teaching experience. He teaches an effortless golf swing that is repeatable and easy to
+            learn. Find out more about what makes him uniquely qualified:
         </h2>
         <ButtonLink href="/about">Learn More About Matt</ButtonLink>
     </div>
