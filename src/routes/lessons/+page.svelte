@@ -176,7 +176,7 @@
 
 <style lang="scss">
     .card {
-        @include card-box-shadow;
+        @include card-shadow;
 
         margin: 0rem 4rem;
         max-width: 70rem;

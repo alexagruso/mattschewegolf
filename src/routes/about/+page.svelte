@@ -33,7 +33,7 @@
     .card {
         max-width: 50rem;
 
-        @include card-box-shadow;
+        @include card-shadow;
 
         @include phone {
             padding: 0rem;

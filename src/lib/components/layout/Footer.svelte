@@ -1,5 +1,6 @@
 <script lang="ts">
-    import DarkButtonLink from "@components/interactive/DarkButtonLink.svelte";
+    import ButtonLink from "@components/interactive/ButtonLink.svelte";
+
     import { page } from "$app/stores";
 </script>
 
@@ -29,15 +30,15 @@
                         <img src="images/footer/youtube.webp" alt="youtube" />
                     </a>
                 </div>
-                <DarkButtonLink href="/lessons">Schedule A Lesson</DarkButtonLink>
+                <ButtonLink dark href="/lessons">Schedule A Lesson</ButtonLink>
             </div>
         </div>
         <div class="row copyright">
             <span>Copyright &copy; 2023 Matt Schewe. All Rights Reserved.</span>
             {#if $page.data.currentSession}
-                <DarkButtonLink href="/dashboard">Dashboard</DarkButtonLink>
+                <ButtonLink dark href="/dashboard">Dashboard</ButtonLink>
             {:else}
-                <DarkButtonLink href="/login">Admin Login</DarkButtonLink>
+                <ButtonLink dark href="/login">Admin Login</ButtonLink>
             {/if}
         </div>
     </div>

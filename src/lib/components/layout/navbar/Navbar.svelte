@@ -1,6 +1,6 @@
 <script lang="ts">
-    import Hamburger from "./navbar/Hamburger.svelte";
-    import SideMenu from "./navbar/SideMenu.svelte";
+    import Hamburger from "@components/interactive/Hamburger.svelte";
+    import SideMenu from "@components/layout/navbar/SideMenu.svelte";
 
     let hamburger: Hamburger;
     let menu: SideMenu;

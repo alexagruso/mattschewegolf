@@ -171,7 +171,7 @@
     .card {
         gap: 0.5rem;
 
-        box-shadow: 0rem 0.25rem 1rem 0.25rem rgba(black, 0.25);
+        @include card-shadow;
     }
 
     .create-form {
