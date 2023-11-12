@@ -4,120 +4,105 @@
     import { page } from "$app/stores";
 </script>
 
-<footer>
-    <div class="col">
-        <div class="row content">
-            <div class="col title">
-                <span>Matt Schewe - Director of Instruction</span>
-                <span>Pearland Golf Club</span>
-                <span>3123 Flower Field Lane</span>
-                <span>Pearland, Texas</span>
-            </div>
-            <div class="col contact">
-                <span>(713) 291-8861</span>
-                <span>matt@mattschewegolf.com</span>
-                <div class="row social">
-                    <a href="https://twitter.com/mattschewegolf?lang=en" target="_blank">
-                        <img src="images/footer/twitter.webp" alt="twitter" />
-                    </a>
-                    <a href="https://www.facebook.com/matt.schewe.1" target="_blank">
-                        <img src="images/footer/facebook.webp" alt="facebook" />
-                    </a>
-                    <a href="https://www.instagram.com/golfpromattschewepga/" target="_blank">
-                        <img src="images/footer/instagram.webp" alt="instagram" />
-                    </a>
-                    <a href="https://www.youtube.com/channel/UCLMlW7yX0chNKrdTu3hC5NA" target="_blank">
-                        <img src="images/footer/youtube.webp" alt="youtube" />
-                    </a>
-                </div>
-                <ButtonLink dark href="/lessons">Schedule A Lesson</ButtonLink>
-            </div>
+<footer class="col">
+    <div class="row content">
+        <div class="col title">
+            <span>Matt Schewe - Director of Instruction</span>
+            <span>Pearland Golf Club</span>
+            <span>3123 Flower Field Lane</span>
+            <span>Pearland, Texas</span>
         </div>
-        <div class="row copyright">
-            <span>Copyright &copy; 2023 Matt Schewe. All Rights Reserved.</span>
+        <div class="col contact">
+            <span>(713) 291-8861</span>
+            <span>matt@mattschewegolf.com</span>
+            <div class="row social">
+                <a href="https://twitter.com/mattschewegolf?lang=en" target="_blank">
+                    <img src="images/footer/twitter.webp" alt="twitter" />
+                </a>
+                <a href="https://www.facebook.com/matt.schewe.1" target="_blank">
+                    <img src="images/footer/facebook.webp" alt="facebook" />
+                </a>
+                <a href="https://www.instagram.com/golfpromattschewepga/" target="_blank">
+                    <img src="images/footer/instagram.webp" alt="instagram" />
+                </a>
+                <a href="https://www.youtube.com/channel/UCLMlW7yX0chNKrdTu3hC5NA" target="_blank">
+                    <img src="images/footer/youtube.webp" alt="youtube" />
+                </a>
+            </div>
+            <ButtonLink dark href="/lessons">Schedule A Lesson</ButtonLink>
+        </div>
+    </div>
+    <hr />
+    <div class="col bottom">
+        <div class="row admin">
+            <div class="row credit">
+                <span>Website Created by</span>
+                <ButtonLink dark href="https://alexagruso.dev">Alex Agruso</ButtonLink>
+            </div>
             {#if $page.data.currentSession}
                 <ButtonLink dark href="/dashboard">Dashboard</ButtonLink>
             {:else}
                 <ButtonLink dark href="/login">Admin Login</ButtonLink>
             {/if}
         </div>
+        <span>Copyright &copy; 2023 Matt Schewe. All Rights Reserved.</span>
     </div>
 </footer>
 
 <style lang="scss">
     footer {
-        justify-content: space-between;
         align-items: center;
 
-        padding: 0rem clamp(2rem, 10vw, 12rem);
+        margin: 0 auto;
+        width: 100%;
 
         background-color: $accent-2;
 
-        font-size: $header-6;
         color: $primary-6;
+    }
 
-        @include tablet-and-below {
-            padding-bottom: 1rem;
-        }
+    hr {
+        height: 1px;
+        width: 100%;
+        background-color: white;
     }
 
     .content {
         justify-content: space-between;
+        align-items: center;
 
-        padding: 1rem 0rem;
-
-        @include tablet-and-below {
-            flex-direction: column;
-
-            padding-bottom: 0rem;
-        }
+        padding: 1rem 0;
+        width: clamp(0rem, 95vw, 64rem);
     }
 
     .title {
-        justify-content: center;
-        align-items: start;
         gap: 0.25rem;
-
-        @include tablet-and-below {
-            padding: 1rem 0rem;
-        }
     }
 
     .contact {
         align-items: end;
+
         gap: 0.5rem;
-
-        @include tablet-and-below {
-            align-items: start;
-
-            border-top: 1px solid $primary-6;
-            padding: 1rem 0rem;
-        }
     }
 
     .social {
         gap: 0.5rem;
     }
 
-    .copyright {
-        justify-content: center;
+    .bottom {
         align-items: center;
-        gap: 2rem;
+        gap: 0.75rem;
 
-        border-top: 1px solid $primary-6;
-        padding: 1rem 0rem;
+        padding: 1rem 0;
+    }
 
-        color: $primary-6;
+    .admin {
+        align-items: center;
+        gap: 2.5rem;
+    }
 
-        img {
-            max-height: 4rem;
-        }
-
-        @include tablet-and-below {
-            flex-direction: column;
-            align-items: start;
-            justify-content: start;
-            gap: 1rem;
-        }
+    .credit {
+        align-items: center;
+        gap: 0.75rem;
     }
 </style>

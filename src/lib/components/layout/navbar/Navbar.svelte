@@ -66,8 +66,6 @@
         align-items: center;
         gap: 0.5rem;
 
-        // background-color: blue;
-
         .image {
             border-radius: 0.75rem;
             padding: 0.25rem;

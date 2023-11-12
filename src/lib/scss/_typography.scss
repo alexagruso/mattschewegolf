@@ -13,7 +13,7 @@ $paragraph: 1rem;
 // main page cards
 @mixin card-title {
     font-family: "Lora";
-    font-size: $header-2;
+    font-size: clamp($header-3, 3vw, $header-2);
     font-weight: 700;
     text-align: center;
     text-transform: uppercase;
@@ -22,9 +22,9 @@ $paragraph: 1rem;
 // main page cards
 @mixin card-subtitle {
     font-family: "Lora";
-    font-size: $header-5;
+    font-size: clamp($header-6, 1vw, $header-5);
     font-weight: 400;
-    text-align: center;
+    text-align: justify;
 }
 
 // other page cards

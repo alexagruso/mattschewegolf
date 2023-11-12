@@ -19,12 +19,12 @@
 
 <section class="row rtl card">
     <div class="col text">
-        <h1 class="title">30 years of excellence<br />in every lesson</h1>
+        <h1 class="title">30 years of excellence in every lesson</h1>
         <h2 class="subtitle">
             As a 30+ year member of the PGA and top five teacher in Southern Texas, Matt brings decades of experience to
             each and every lesson. Schedule one today!
         </h2>
-        <ButtonLink href="/lessons">View Lesson Rates</ButtonLink>
+        <ButtonLink href="/lessons">See Our Lesson Rates</ButtonLink>
     </div>
     <div class="image">
         <img src="images/matt/lessons.webp" alt="matt schewe during a lesson" />
@@ -33,10 +33,10 @@
 
 <section class="row card">
     <div class="col text">
-        <h1 class="title">STAY UP TO DATE<br />WITH THE LATEST NEWS</h1>
+        <h1 class="title">Stay up to date with the latest news</h1>
         <h2 class="subtitle">
             All of the latest information about Matt, including awards, celebrity shout outs, and more, are posted on
-            our blog.
+            our blog. You can also find links to content on our other social media platforms.
         </h2>
         <ButtonLink href="/blog">Visit Matt's Blog</ButtonLink>
     </div>
@@ -63,15 +63,19 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 2rem;
+        gap: 1.25rem;
 
-        padding: 3.5rem;
+        padding: 2rem;
 
         h1 {
+            max-width: 85%; // janky but I don't want to surround with a div
+
             @include card-title;
         }
 
         h2 {
+            max-width: 80%; // janky but I don't want to surround with a div
+
             color: $primary-2;
 
             @include card-subtitle;
@@ -80,7 +84,7 @@
 
     .image {
         img {
-            max-height: clamp(400px, 45vw, 560px);
+            max-height: clamp(480px, 50vw, 560px);
         }
     }
 </style>
