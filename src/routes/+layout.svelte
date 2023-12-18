@@ -1,4 +1,6 @@
 <script lang="ts">
+    import "@lib/scss/global.scss";
+
     import Footer from "@components/layout/Footer.svelte";
     import Navbar from "@components/layout/navbar/Navbar.svelte";
 </script>

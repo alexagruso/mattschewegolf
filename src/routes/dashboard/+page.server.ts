@@ -9,7 +9,7 @@ export const actions: Actions = {
 
         try {
             await sessions.deleteOne(currentSession);
-            event.cookies.delete("Session");
+            event.cookies.delete("Session", { path: "/" });
         } catch (error) {
             console.error(error);
             console.error("ERROR: failed to log out");
@@ -20,7 +20,7 @@ export const actions: Actions = {
 };
 
 export const load: PageServerLoad = async (event) => {
-    const currentSession = guardPage(event);
+    const currentSession = await guardPage(event);
 
     return { currentSession };
 };

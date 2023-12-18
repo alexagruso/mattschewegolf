@@ -36,7 +36,7 @@ export const actions: Actions = {
             const newSession = createSession(user.username);
 
             await sessions.insertMany(newSession);
-            event.cookies.set("Session", JSON.stringify(newSession));
+            event.cookies.set("Session", JSON.stringify(newSession), { path: "/" });
         } catch (error) {
             console.error(error);
             console.error("ERROR: failed to login");
