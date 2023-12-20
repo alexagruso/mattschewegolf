@@ -1,22 +1,10 @@
 <script lang="ts">
-    import "@lib/scss/global.scss";
-
-    import Footer from "@components/layout/Footer.svelte";
-    import Navbar from "@components/layout/navbar/Navbar.svelte";
+    import "@lib/scss/reset.scss";
 </script>
 
-<Navbar />
-<main class="col">
-    <slot />
-</main>
-<Footer />
+<h1>Placeholder</h1>
+
+<slot />
 
 <style lang="scss">
-    main {
-        flex-grow: 1;
-        align-items: center;
-        gap: 4rem;
-
-        padding: 4rem 0rem;
-    }
 </style>
