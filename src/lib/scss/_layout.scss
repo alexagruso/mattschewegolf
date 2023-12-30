@@ -1,0 +1,33 @@
+.row {
+    display: flex;
+    flex-direction: row;
+
+    &.rev {
+        flex-direction: row-reverse;
+    }
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+
+    &.rev {
+        flex-direction: column-reverse;
+    }
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+@mixin mobile {
+    @media (min-width: 480px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: 768px) {
+        @content;
+    }
+}

@@ -1,10 +1,18 @@
 <script lang="ts">
+    import Footer from "@components/Footer.svelte";
+    import Navbar from "@components/Navbar.svelte";
+
     import "@lib/scss/reset.scss";
 </script>
 
-<h1>Placeholder</h1>
-
-<slot />
+<Navbar />
+<main>
+    <slot />
+</main>
+<Footer />
 
 <style lang="scss">
+    main {
+        flex-grow: 1;
+    }
 </style>

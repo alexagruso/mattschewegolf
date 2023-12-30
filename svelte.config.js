@@ -9,10 +9,10 @@ const config = {
     kit: {
         adapter: adapter(),
         alias: {
-            "@components": "./src/lib/components",
-            "@lib/*": "./src/lib/*",
+            "@components/*": "./src/lib/components/*",
             "@schemas/*": "./src/lib/server/schemas/*",
             "@server/*": "./src/lib/server/*",
+            "@lib/*": "./src/lib/*",
         },
         csrf: {
             checkOrigin: false,

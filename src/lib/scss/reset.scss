@@ -1,4 +1,40 @@
+@use "colors" as *;
+@use "typography" as *;
+
 * {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
     margin: 0;
+    outline: none;
+    border: none;
     padding: 0;
+
+    background: none;
+
+    font-family: DMSans;
+    font-weight: 400;
+    text-decoration: none;
+    color: $primary-1;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    // position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    min-height: 100vh;
+
+    background-color: $primary-6;
+}
+
+img {
+    display: block;
+    object-fit: scale-down;
 }
