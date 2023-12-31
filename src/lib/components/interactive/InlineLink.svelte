@@ -18,42 +18,34 @@
         position: relative;
 
         display: block;
-        transition: color 150ms;
+        transition: background-color 150ms, transform 150ms linear, border-color 150ms;
 
-        font-weight: 900;
+        border-radius: 0.5rem;
+        padding: 0.15rem 0.5rem;
 
-        &::before {
-            content: "";
+        font-weight: 400;
 
-            position: absolute;
-            bottom: -2px;
-            left: 50%;
-
-            transition: left $link-underline $link-underline-curve, width $link-underline $link-underline-curve;
-
-            width: 0;
-            height: 2px;
-        }
-
-        &:hover::before {
-            left: 0;
-
-            width: 100%;
+        &:active {
+            transform: translateY(0.25rem);
         }
 
         &.dark {
+            background-color: $accent-2;
+
             color: $primary-6;
 
-            &::before {
-                background-color: $primary-6;
+            &:hover {
+                background-color: $accent-3;
             }
         }
 
         &.light {
-            color: $primary-1;
+            background-color: $primary-1;
 
-            &::before {
-                background-color: $primary-1;
+            color: $primary-6;
+
+            &:hover {
+                background-color: lighten($primary-1, 10%);
             }
         }
     }

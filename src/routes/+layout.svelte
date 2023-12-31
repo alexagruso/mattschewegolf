@@ -3,10 +3,15 @@
     import Navbar from "@components/Navbar.svelte";
 
     import "@lib/scss/reset.scss";
+    import { onMount } from "svelte";
+
+    onMount(() => {
+        document.body.style.visibility = "visible";
+    });
 </script>
 
 <Navbar />
-<main>
+<main class="col">
     <slot />
 </main>
 <Footer />
@@ -14,5 +19,9 @@
 <style lang="scss">
     main {
         flex-grow: 1;
+        align-items: center;
+        gap: 2rem;
+
+        padding: 2rem 0;
     }
 </style>

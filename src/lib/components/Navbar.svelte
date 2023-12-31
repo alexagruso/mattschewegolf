@@ -1,15 +1,11 @@
 <script lang="ts">
-    import Hamburger from "@components/Hamburger.svelte";
+    import Hamburger from "@components/interactive/Hamburger.svelte";
+    import NavbarLink from "@components/interactive/NavbarLink.svelte";
+    import { Style } from "@lib/configuration/styles";
 
     let active: boolean;
 </script>
 
-<button
-    class="dim"
-    class:active
-    on:click={() => {
-        active = !active;
-    }} />
 <header class="row">
     <nav class="row">
         <div class="logo row">
@@ -22,11 +18,11 @@
             </div>
         </div>
         <div class="links col" class:active>
-            <a data-sveltekit-reload href="/">Home</a>
-            <a data-sveltekit-reload href="/about">About</a>
-            <a data-sveltekit-reload href="/lessons">Lessons</a>
-            <a data-sveltekit-reload href="/contact">Contact</a>
-            <a data-sveltekit-reload href="/blog">Blog</a>
+            <NavbarLink href="/" style={Style.Dark}>Home</NavbarLink>
+            <NavbarLink href="/about" style={Style.Dark}>About</NavbarLink>
+            <NavbarLink href="/lessons" style={Style.Dark}>Lessons</NavbarLink>
+            <NavbarLink href="/contact" style={Style.Dark}>Contact</NavbarLink>
+            <NavbarLink href="/blog" style={Style.Dark}>Blog</NavbarLink>
         </div>
         <div class="hamburger">
             <Hamburger bind:active />
@@ -41,7 +37,7 @@
 
         justify-content: center;
 
-        background-color: $accent-2;
+        background-color: $accent-1;
     }
 
     nav {
@@ -102,51 +98,15 @@
         left: -100%;
 
         align-items: center;
+        gap: 1.5rem;
 
         transition: left 250ms;
 
-        box-shadow: 0 0.5rem 1rem -0.5rem $primary-1;
         border-top: 1px solid $primary-2;
+        padding: 1rem;
         width: 100%;
 
-        background-color: $accent-2;
-
-        a {
-            position: relative;
-
-            transition: color 150ms;
-
-            padding: 1rem;
-
-            font-weight: 400;
-            text-transform: lowercase;
-            color: $primary-6;
-
-            &::before {
-                content: "";
-
-                position: absolute;
-                bottom: -2px;
-                left: 50%;
-
-                transition: all 250ms;
-
-                width: 0;
-                height: 2px;
-
-                background-color: $primary-6;
-            }
-
-            &:hover::before {
-                left: 0;
-
-                width: 100%;
-            }
-
-            @include tablet {
-                padding: 0;
-            }
-        }
+        background-color: $accent-1;
 
         &.active {
             left: 0;
@@ -171,28 +131,6 @@
         }
     }
 
-    .dim {
-        position: fixed;
-        top: 0;
-        left: 0;
-
-        opacity: 0;
-        visibility: hidden;
-
-        transition: opacity 250ms, visibility 250ms;
-
-        width: 100vw;
-        height: 100vh;
-
-        background-color: black;
-
-        &.active {
-            opacity: 0.5;
-            visibility: visible;
-        }
-    }
-
-    .dim,
     .hamburger {
         @include tablet {
             display: none;

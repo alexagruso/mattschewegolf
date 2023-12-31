@@ -94,6 +94,7 @@
         @include tablet {
             flex-direction: row;
             justify-content: center;
+            align-items: center;
             gap: 2rem;
 
             padding-top: 1rem;
@@ -108,6 +109,6 @@
     span {
         color: $primary-6;
 
-        font-size: clamp(0.9rem, 1vw, 1rem);
+        font-size: 0.9rem;
     }
 </style>
