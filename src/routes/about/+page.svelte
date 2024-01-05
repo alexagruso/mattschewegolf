@@ -3,7 +3,7 @@
 
 <section class="card col">
     <header class="row">
-        <img src="images/matt/about.webp" alt="Headshot of Matt Schewe" />
+        <img src="/images/matt/about.webp" alt="Headshot of Matt Schewe" />
         <div class="title col">
             <h1>Biography</h1>
             <h2>About Matt</h2>

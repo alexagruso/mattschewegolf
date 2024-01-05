@@ -1,12 +1,12 @@
 <script lang="ts">
+    import "@lib/scss/reset.scss";
+
     import Footer from "@components/Footer.svelte";
     import Navbar from "@components/Navbar.svelte";
-
-    import "@lib/scss/reset.scss";
     import { onMount } from "svelte";
 
     onMount(() => {
-        document.body.style.visibility = "visible";
+        // document.body.style.visibility = "visible";
     });
 </script>
 

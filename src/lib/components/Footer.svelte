@@ -1,6 +1,5 @@
 <script lang="ts">
     import InlineLink from "@components/interactive/InlineLink.svelte";
-    import { Style } from "@lib/configuration/styles";
 </script>
 
 <footer class="col">
@@ -32,7 +31,7 @@
                 </a>
             </div>
             <p>
-                <InlineLink href="/contact" style={Style.Dark}>Contact Matt</InlineLink>
+                <InlineLink href="/contact" dark>Contact Matt</InlineLink>
             </p>
         </section>
     </section>
@@ -42,15 +41,21 @@
             <span class="inline-block">All Rights Reserved.</span>
         </p>
         <p>
-            <span class="inline-block">Website Created by</span>
-            <InlineLink href="https://alexagruso.dev" style={Style.Dark}>Alex Agruso</InlineLink>
+            Website Created by
+            <InlineLink href="https://alexagruso.dev" dark>Alex Agruso</InlineLink>
         </p>
-        <p><InlineLink href="/login" style={Style.Dark}>Admin Login</InlineLink></p>
+        <p>
+            <InlineLink href="/login" dark>Admin Login</InlineLink>
+        </p>
+        <p>
+            <InlineLink href="/test" dark>Test Page</InlineLink>
+        </p>
     </section>
 </footer>
 
 <style lang="scss">
     footer {
+        box-shadow: 0 0 0.25rem $primary-1;
         padding: 1rem;
 
         background-color: $accent-1;

@@ -1,6 +1,7 @@
 <script lang="ts">
+    import Testimonial from "@components/Testimonial.svelte";
+    import Hamburger from "@components/interactive/Hamburger.svelte";
     import InlineLink from "@components/interactive/InlineLink.svelte";
-    import { Style } from "@lib/configuration/styles";
 </script>
 
 <section class="card row">
@@ -12,8 +13,8 @@
             repeatable and easy to learn."
         </p>
         <div class="links row">
-            <InlineLink href="/about" style={Style.Light}>Read More About Matt</InlineLink>
-            <InlineLink href="/contact" style={Style.Light}>Get in Contact</InlineLink>
+            <InlineLink href="/about">Read More About Matt</InlineLink>
+            <InlineLink href="/contact">Get in Contact</InlineLink>
         </div>
     </div>
     <img src="images/matt/hero.webp" alt="Matt Schewe standing with his clubs" />
@@ -26,7 +27,7 @@
             today!
         </p>
         <div class="links row">
-            <InlineLink href="/lessons" style={Style.Light}>View Lesson Rates</InlineLink>
+            <InlineLink href="/lessons">View Lesson Rates</InlineLink>
         </div>
     </div>
     <img src="images/matt/lessons.webp" alt="Matt Schewe teaching one of his students" />
@@ -39,15 +40,32 @@
             our blog.
         </p>
         <div class="links row">
-            <InlineLink href="/blog" style={Style.Light}>Visit Matt's Blog</InlineLink>
+            <InlineLink href="/blog">Visit Matt's Blog</InlineLink>
         </div>
     </div>
     <img src="images/matt/blog.webp" alt="Matt Schewe's golf clubs" />
 </section>
+<section class="testimonials col">
+    <Testimonial name="awd"
+        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam voluptatibus, sed nisi repellendus itaque
+        aliquam ullam sunt iusto quia minima natus provident consequuntur fuga ad placeat modi sint. Natus deleniti illo
+        veritatis excepturi sequi mollitia exercitationem, maxime nam? Laborum, blanditiis. Reprehenderit, tempora rerum
+        quia dolorem sint ex nulla natus architecto?</Testimonial>
+    <Testimonial name="awd"
+        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam voluptatibus, sed nisi repellendus itaque
+        aliquam ullam sunt iusto quia minima natus provident consequuntur fuga ad placeat modi sint. Natus deleniti illo
+        veritatis excepturi sequi mollitia exercitationem, maxime nam? Laborum, blanditiis. Reprehenderit, tempora rerum
+        quia dolorem sint ex nulla natus architecto?</Testimonial>
+    <Testimonial name="awd"
+        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam voluptatibus, sed nisi repellendus itaque
+        aliquam ullam sunt iusto quia minima natus provident consequuntur fuga ad placeat modi sint. Natus deleniti illo
+        veritatis excepturi sequi mollitia exercitationem, maxime nam? Laborum, blanditiis. Reprehenderit, tempora rerum
+        quia dolorem sint ex nulla natus architecto?</Testimonial>
+</section>
 
 <style lang="scss">
     .card {
-        border: 1px solid black;
+        border: 1px solid $accent-1;
         max-width: 64rem;
 
         .text {
@@ -60,7 +78,9 @@
 
         h1,
         h2 {
+            font-family: "Raleway";
             font-size: 3rem;
+            font-weight: 700;
             text-transform: capitalize;
         }
 
@@ -75,6 +95,17 @@
         img {
             max-width: 30%;
             flex-grow: 2;
+        }
+    }
+
+    .testimonials {
+        gap: 2rem;
+
+        max-width: 64rem;
+        width: 100%;
+
+        @include tablet {
+            flex-direction: row;
         }
     }
 </style>

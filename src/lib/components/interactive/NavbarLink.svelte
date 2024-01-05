@@ -1,13 +1,10 @@
 <script lang="ts">
-    import { Style } from "@lib/configuration/styles";
-
-    export let current = false;
+    export let dark = false;
     export let href: string;
-    export let style: Style = Style.Light;
 </script>
 
 <div class="inline-block">
-    <a {href} class:current class:light={style === Style.Light} class:dark={style === Style.Dark}>
+    <a {href} class:dark>
         <slot />
     </a>
 </div>
@@ -25,6 +22,7 @@
 
         font-weight: 400;
         text-transform: lowercase;
+        color: $primary-6;
 
         @include tablet {
             &::before {
@@ -34,32 +32,18 @@
                 bottom: -2px;
                 left: 50%;
 
-                transition: left $link-underline $link-underline-curve, width $link-underline $link-underline-curve;
+                transition: left $link-underline, width $link-underline;
 
                 width: 0;
                 height: 2px;
+
+                background-color: $primary-6;
             }
 
             &:hover::before {
                 left: 0;
 
                 width: 100%;
-            }
-        }
-
-        &.dark {
-            color: $primary-6;
-
-            &::before {
-                background-color: $primary-6;
-            }
-        }
-
-        &.light {
-            color: $primary-1;
-
-            &::before {
-                background-color: $primary-1;
             }
         }
     }

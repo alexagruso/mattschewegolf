@@ -1,7 +1,6 @@
 <script lang="ts">
     import Hamburger from "@components/interactive/Hamburger.svelte";
     import NavbarLink from "@components/interactive/NavbarLink.svelte";
-    import { Style } from "@lib/configuration/styles";
 
     let active: boolean;
 </script>
@@ -18,11 +17,11 @@
             </div>
         </div>
         <div class="links col" class:active>
-            <NavbarLink href="/" style={Style.Dark}>Home</NavbarLink>
-            <NavbarLink href="/about" style={Style.Dark}>About</NavbarLink>
-            <NavbarLink href="/lessons" style={Style.Dark}>Lessons</NavbarLink>
-            <NavbarLink href="/contact" style={Style.Dark}>Contact</NavbarLink>
-            <NavbarLink href="/blog" style={Style.Dark}>Blog</NavbarLink>
+            <NavbarLink href="/">Home</NavbarLink>
+            <NavbarLink href="/about">About</NavbarLink>
+            <NavbarLink href="/lessons">Lessons</NavbarLink>
+            <NavbarLink href="/contact">Contact</NavbarLink>
+            <NavbarLink href="/blog">Blog</NavbarLink>
         </div>
         <div class="hamburger">
             <Hamburger bind:active />
@@ -37,6 +36,8 @@
 
         justify-content: center;
 
+        box-shadow: 0 0.1rem 0.1rem $primary-1;
+
         background-color: $accent-1;
     }
 
@@ -45,7 +46,6 @@
 
         justify-content: space-between;
         align-items: center;
-
         max-width: 64rem;
         width: 100%;
 
@@ -102,7 +102,9 @@
 
         transition: left 250ms;
 
+        box-shadow: 0 0.1rem 0.1rem $primary-1;
         border-top: 1px solid $primary-2;
+        border-bottom: 1px solid $primary-2;
         padding: 1rem;
         width: 100%;
 
@@ -124,7 +126,7 @@
             gap: clamp(2rem, 5vw, 3rem);
 
             box-shadow: none;
-            border-top: none;
+            border: none;
             width: unset;
 
             background-color: unset;

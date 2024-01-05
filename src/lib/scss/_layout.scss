@@ -16,6 +16,10 @@
     }
 }
 
+.grid {
+    display: grid;
+}
+
 .inline-block {
     display: inline-block;
 }
@@ -28,6 +32,24 @@
 
 @mixin tablet {
     @media (min-width: 768px) {
+        @content;
+    }
+}
+
+@mixin tablet-and-above {
+    @media (min-width: 768px) {
+        @content;
+    }
+}
+
+@mixin tablet-and-below {
+    @media (max-width: 768px) {
+        @content;
+    }
+}
+
+@mixin portrait-and-below {
+    @media (max-width: 1024px) {
         @content;
     }
 }
