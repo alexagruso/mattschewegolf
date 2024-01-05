@@ -1,0 +1,26 @@
+@for $i from 0 through 5 {
+    .primary-#{$i + 1} {
+        color: hsl(0, 0%, 6% + $i * 18%);
+    }
+
+    .accent-#{$i + 1} {
+        color: hsl(345, 100%, 12% + $i * 6%);
+    }
+}
+
+$primary-1: hsl(0, 0%, 6%);
+$primary-2: hsl(0, 0%, 24%);
+$primary-3: hsl(0, 0%, 42%);
+$primary-4: hsl(0, 0%, 60%);
+$primary-5: hsl(0, 0%, 78%);
+$primary-6: hsl(0, 0%, 96%);
+
+$accent-1: hsl(345, 100%, 12%);
+$accent-2: hsl(345, 100%, 18%);
+$accent-3: hsl(345, 100%, 24%);
+$accent-4: hsl(345, 100%, 30%);
+$accent-5: hsl(345, 100%, 36%);
+$accent-6: hsl(345, 100%, 42%);
+
+$text-light: $primary-1;
+$text-dark: $primary-6;

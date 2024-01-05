@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap");
+
+@import "./colors";
+@import "./layouts";
+@import "./typography";
+
+:global {
+    * {
+        padding: 0rem;
+        border: none;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        margin: 0rem;
+
+        font-family: "Lora";
+        font-weight: 700;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    html {
+        position: relative;
+
+        font-size: 16px;
+
+        color: green;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+
+        min-height: 100vh;
+
+        background-color: $primary-6;
+    }
+}

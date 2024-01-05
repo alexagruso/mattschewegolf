@@ -14,7 +14,7 @@
         flex-grow: 1;
         gap: clamp(3rem, 1vh, 4rem);
 
-        margin: clamp(3rem, 1vh, 4rem) clamp(4rem, 10vw, 12rem);
+        margin: clamp(3rem, 1vh, 4rem) 2rem;
 
         @include tablet-and-below {
             margin: clamp(3rem, 1vh, 4rem) 0rem;
