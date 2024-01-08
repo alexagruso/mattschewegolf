@@ -36,5 +36,9 @@ body {
 
 img {
     display: block;
-    object-fit: scale-down;
+    // object-fit: scale-down;
+}
+
+button {
+    cursor: pointer;
 }

@@ -34,7 +34,7 @@
 
 <style lang="scss">
     .card {
-        border: 1px solid black;
+        box-shadow: 0 0 0.25rem $primary-1;
         max-width: 48rem;
     }
 

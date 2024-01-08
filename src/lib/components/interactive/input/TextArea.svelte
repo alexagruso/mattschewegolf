@@ -1,13 +1,14 @@
 <script lang="ts">
     export let name: string;
-    export let placeholder = "Input Placeholder";
-    export let label = "Input Label";
+    export let label = name;
+    export let placeholder = "Placeholder";
     export let value = "";
+    export let rows = 5;
 </script>
 
 <div class="col">
     <label for={name}>{label}</label>
-    <input type="text" {name} {placeholder} id={name} bind:value />
+    <textarea {name} {placeholder} id={name} {rows} bind:value />
 </div>
 
 <style lang="scss">
@@ -23,11 +24,14 @@
         text-transform: uppercase;
     }
 
-    input {
+    textarea {
+        transition: border-color 75ms;
+
         border-bottom: 2px solid $primary-4;
         padding: 0.25rem;
+        resize: vertical;
 
-        transition: border-color 75ms;
+        font-size: 1rem;
 
         &::placeholder {
             transition: color 75ms;

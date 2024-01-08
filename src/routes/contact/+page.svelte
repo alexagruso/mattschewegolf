@@ -1,5 +1,6 @@
 <script lang="ts">
-    import TextInput from "@components/interactive/TextInput.svelte";
+    import TextInput from "@components/interactive/input/TextInput.svelte";
+    import TextArea from "@components/interactive/input/TextArea.svelte";
 </script>
 
 <section class="card col">
@@ -12,21 +13,20 @@
         </p>
     </header>
     <form class="col">
-        <TextInput name="name" label="name" placeholder="Name" />
+        <TextInput name="name" placeholder="Name" />
         <div class="return-inputs col">
-            <TextInput name="email" label="email" placeholder="name@example.com" />
-            <TextInput name="phone" label="phone" placeholder="(123) 456-7890" />
+            <TextInput name="email" placeholder="name@example.com" />
+            <TextInput name="phone" placeholder="(123) 456-7890" />
         </div>
-        <TextInput name="message" label="message" placeholder="Message" />
+        <TextArea name="message" placeholder="Message" rows={5} />
         <button type="submit">Send Message</button>
     </form>
 </section>
 
 <style lang="scss">
     .card {
-        border: 1px solid $accent-1;
-
-        max-width: 64rem;
+        box-shadow: 0 0 0.25rem $primary-1;
+        max-width: 48rem;
         width: 100%;
 
         @include portrait-and-below {
@@ -66,7 +66,8 @@
     form {
         gap: 1.5rem;
 
-        padding: 2rem;
+        // padding: 2rem;
+        padding: 2rem clamp(1.2rem, 5vw, 2rem);
     }
 
     .return-inputs {

@@ -62,7 +62,7 @@
     }
 
     section {
-        gap: 0.25rem;
+        gap: 0.5rem;
     }
 
     .info,
@@ -77,7 +77,7 @@
     }
 
     .info {
-        @include tablet {
+        @include tablet-and-above {
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
@@ -96,7 +96,7 @@
     }
 
     .admin {
-        @include tablet {
+        @include tablet-and-above {
             flex-direction: row;
             justify-content: center;
             align-items: center;

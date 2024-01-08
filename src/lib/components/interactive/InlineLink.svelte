@@ -7,14 +7,15 @@
 
 <style lang="scss">
     a {
-        display: inline-block;
         transition: background-color 150ms, transform 150ms linear, border-color 150ms;
 
         border-radius: 0.5rem;
         padding: 0.15rem 0.5rem;
+        width: fit-content;
 
         background-color: $primary-1;
 
+        font-size: inherit;
         font-weight: 400;
         color: $primary-6;
 

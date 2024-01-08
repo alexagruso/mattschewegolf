@@ -6,7 +6,7 @@
 
 <section class="card row">
     <div class="text col">
-        <h1>Matt Schewe:<br />Your Next Golf Coach</h1>
+        <h2>Matt Schewe:<br />Your Next Golf Coach</h2>
         <p>
             Matt Schewe, winner of the STPGA Eastern Chapter Teacher of the Year Award, is a Houston based golf
             instructor with over 30 years of teaching experience. He teaches an "effortless golf swing that is
@@ -21,7 +21,7 @@
 </section>
 <section class="card row rev">
     <div class="text col">
-        <h2>30 Years of Excellence in<br /> Every Lesson</h2>
+        <h2>30 Years of Excellence in Every Lesson</h2>
         <p>
             As a 30+ year member of the PGA, Matt brings decades of experience to each and every lesson. Schedule one
             today!
@@ -34,7 +34,7 @@
 </section>
 <section class="card row">
     <div class="text col">
-        <h2>Stay up to Date With the<br />Latest News About Matt</h2>
+        <h2>Stay up to Date With the Latest News About Matt</h2>
         <p>
             All of the latest information about Matt, including awards, celebrity shout outs, and more, are posted on
             our blog.
@@ -45,67 +45,62 @@
     </div>
     <img src="images/matt/blog.webp" alt="Matt Schewe's golf clubs" />
 </section>
-<section class="testimonials col">
-    <Testimonial name="awd"
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam voluptatibus, sed nisi repellendus itaque
-        aliquam ullam sunt iusto quia minima natus provident consequuntur fuga ad placeat modi sint. Natus deleniti illo
-        veritatis excepturi sequi mollitia exercitationem, maxime nam? Laborum, blanditiis. Reprehenderit, tempora rerum
-        quia dolorem sint ex nulla natus architecto?</Testimonial>
-    <Testimonial name="awd"
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam voluptatibus, sed nisi repellendus itaque
-        aliquam ullam sunt iusto quia minima natus provident consequuntur fuga ad placeat modi sint. Natus deleniti illo
-        veritatis excepturi sequi mollitia exercitationem, maxime nam? Laborum, blanditiis. Reprehenderit, tempora rerum
-        quia dolorem sint ex nulla natus architecto?</Testimonial>
-    <Testimonial name="awd"
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam voluptatibus, sed nisi repellendus itaque
-        aliquam ullam sunt iusto quia minima natus provident consequuntur fuga ad placeat modi sint. Natus deleniti illo
-        veritatis excepturi sequi mollitia exercitationem, maxime nam? Laborum, blanditiis. Reprehenderit, tempora rerum
-        quia dolorem sint ex nulla natus architecto?</Testimonial>
-</section>
 
 <style lang="scss">
     .card {
-        border: 1px solid $accent-1;
+        align-items: center;
+
+        box-shadow: 0 0 0.25rem $primary-1;
         max-width: 64rem;
+        width: 100%;
+        height: 28rem;
 
-        .text {
-            flex-grow: 1;
-            justify-content: center;
-            gap: 1.25rem;
-
-            padding: 0 2rem;
-        }
-
-        h1,
-        h2 {
-            font-family: "Raleway";
-            font-size: 3rem;
-            font-weight: 700;
-            text-transform: capitalize;
-        }
-
-        p {
-            font-size: 1.2rem;
-        }
-
-        .links {
-            gap: 1.25rem;
-        }
-
-        img {
-            max-width: 30%;
-            flex-grow: 2;
+        @include mobile-and-below {
+            flex-direction: column !important;
         }
     }
 
-    .testimonials {
-        gap: 2rem;
+    .text {
+        gap: 1rem;
 
-        max-width: 64rem;
-        width: 100%;
+        padding: 3rem;
 
-        @include tablet {
-            flex-direction: row;
+        h2 {
+            font-size: clamp(1.5rem, 5vw, 3rem);
+        }
+
+        p {
+            font-size: clamp(0.8rem, 1vw, 1rem);
+        }
+
+        @include tablet-and-below {
+            padding: 1rem;
+        }
+    }
+
+    .links {
+        gap: 1rem;
+
+        font-size: clamp(0.8rem, 1vw, 1rem);
+
+        @include portrait-and-below {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+    }
+
+    img {
+        max-width: 50%;
+        // height: 100%;
+
+        border: 1px solid red;
+
+        @include tablet-and-below {
+            background-color: $accent-1;
+        }
+
+        @include mobile-and-below {
+            max-width: 100%;
         }
     }
 </style>
