@@ -4,103 +4,148 @@
     import InlineLink from "@components/interactive/InlineLink.svelte";
 </script>
 
-<section class="card row">
+<section class="card col">
+    <div class="image row">
+        <h2>Matt Schewe: Your Next Golf Coach</h2>
+        <img src="/images/matt/hero.webp" alt="Matt standing with his clubs" />
+    </div>
     <div class="text col">
-        <h2>Matt Schewe:<br />Your Next Golf Coach</h2>
+        <h2>Matt Schewe: Your Next Golf Coach</h2>
         <p>
-            Matt Schewe, winner of the STPGA Eastern Chapter Teacher of the Year Award, is a Houston based golf
-            instructor with over 30 years of teaching experience. He teaches an "effortless golf swing that is
-            repeatable and easy to learn."
+            Matt Schewe, winner of the 2023 STPGA Eastern Chapter Teacher of the Year Award, is a Houston based golf
+            instructor. He teaches an effortless swing that is repeatable and easy to learn. Find out more about what
+            makes him a uniquely qualified instructor:
         </p>
-        <div class="links row">
-            <InlineLink href="/about">Read More About Matt</InlineLink>
+        <div class="links col">
+            <InlineLink href="/about">Learn More</InlineLink>
             <InlineLink href="/contact">Get in Contact</InlineLink>
         </div>
     </div>
-    <img src="images/matt/hero.webp" alt="Matt Schewe standing with his clubs" />
 </section>
-<section class="card row rev">
+<section class="card col">
+    <div class="image row rev">
+        <h2 class="top">30 Years of Excellence in Every Lesson</h2>
+        <img src="/images/matt/lessons.webp" alt="Matt during a lesson" />
+    </div>
     <div class="text col">
-        <h2>30 Years of Excellence in Every Lesson</h2>
+        <h2 class="top">30 Years of Excellence in Every Lesson</h2>
         <p>
-            As a 30+ year member of the PGA, Matt brings decades of experience to each and every lesson. Schedule one
-            today!
+            As a 30+ year member of the PGA, Matt brings decades of experience to each and every lesson. Check out
+            Matt's lesson pricing:
         </p>
-        <div class="links row">
+        <div class="links col">
             <InlineLink href="/lessons">View Lesson Rates</InlineLink>
         </div>
     </div>
-    <img src="images/matt/lessons.webp" alt="Matt Schewe teaching one of his students" />
 </section>
-<section class="card row">
+<section class="card col">
+    <div class="image row">
+        <h2 class="top">The Latest About Matt</h2>
+        <img src="/images/matt/blog.webp" alt="Matt's clubs" />
+    </div>
     <div class="text col">
-        <h2>Stay up to Date With the Latest News About Matt</h2>
+        <h2 class="top">The Latest About Matt</h2>
         <p>
-            All of the latest information about Matt, including awards, celebrity shout outs, and more, are posted on
-            our blog.
+            All of the latest information about Matt, including awards, celebrity shout-outs, and more, are posted on
+            his blog. Stay up date by visiting below:
         </p>
-        <div class="links row">
-            <InlineLink href="/blog">Visit Matt's Blog</InlineLink>
+        <div class="links col">
+            <InlineLink href="/blog">View Matt's Blog</InlineLink>
         </div>
     </div>
-    <img src="images/matt/blog.webp" alt="Matt Schewe's golf clubs" />
 </section>
 
 <style lang="scss">
     .card {
-        align-items: center;
-
         box-shadow: 0 0 0.25rem $primary-1;
-        max-width: 64rem;
-        width: 100%;
-        height: 28rem;
 
-        @include mobile-and-below {
-            flex-direction: column !important;
+        @include wide-mobile-and-above {
+            flex-direction: row-reverse;
+
+            max-width: 48rem;
+            width: 100%;
+        }
+    }
+
+    .card:nth-of-type(2) {
+        @include wide-mobile-and-above {
+            flex-direction: row;
         }
     }
 
     .text {
         gap: 1rem;
 
-        padding: 3rem;
-
-        h2 {
-            font-size: clamp(1.5rem, 5vw, 3rem);
-        }
+        padding: 1rem;
 
         p {
-            font-size: clamp(0.8rem, 1vw, 1rem);
+            font-size: clamp(0.85rem, 2vw, 1rem);
         }
 
-        @include tablet-and-below {
-            padding: 1rem;
+        @include wide-mobile-and-above {
+            justify-content: center;
+
+            padding: 2rem;
         }
+    }
+
+    .image {
+        z-index: 0;
+        position: relative;
     }
 
     .links {
-        gap: 1rem;
-
-        font-size: clamp(0.8rem, 1vw, 1rem);
-
-        @include portrait-and-below {
-            flex-direction: column;
-            gap: 0.5rem;
-        }
+        gap: 0.75rem;
     }
 
     img {
-        max-width: 50%;
-        // height: 100%;
+        width: clamp(16rem, 35vw, 20rem);
 
-        border: 1px solid red;
+        @include wide-mobile-and-below {
+            width: 100%;
+        }
+    }
 
-        @include tablet-and-below {
-            background-color: $accent-1;
+    .image {
+        @include mobile-and-above {
+            flex-direction: row;
+        }
+    }
+
+    .image > h2 {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+
+        padding: 1.5rem;
+        width: 100%;
+
+        background-color: rgba($primary-1, 90%);
+
+        font-size: clamp(1.75rem, 1vw, 3rem);
+        color: $primary-6;
+
+        &.top {
+            top: 0;
+            bottom: unset;
         }
 
-        @include mobile-and-below {
-            max-width: 100%;
+        @include mobile-and-above {
+            display: none;
+        }
+
+        @include wide-mobile-and-above {
+            display: none;
+        }
+    }
+
+    .text > h2 {
+        display: none;
+
+        @include wide-mobile-and-above {
+            display: block;
+
+            font-size: clamp(1.5rem, 1vw, 2.5rem);
         }
     }
 </style>

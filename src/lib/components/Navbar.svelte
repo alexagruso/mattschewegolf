@@ -26,17 +26,24 @@
         <div class="hamburger">
             <Hamburger bind:active />
         </div>
+        <button
+            class="dim"
+            class:active
+            on:click={() => {
+                active = !active;
+            }} />
     </nav>
 </header>
 
 <style lang="scss">
     header {
+        z-index: 1;
         position: sticky;
         top: 0;
 
         justify-content: center;
 
-        box-shadow: 0 0.1rem 0.1rem $primary-1;
+        box-shadow: 0 0rem 0.25rem $primary-1;
 
         background-color: $accent-1;
     }
@@ -51,7 +58,7 @@
 
         padding: 0.25rem 1rem 0.25rem 0.25rem;
 
-        @include tablet {
+        @include tablet-and-above {
             padding-right: 1.5rem;
         }
     }
@@ -93,6 +100,7 @@
     }
 
     .links {
+        z-index: 2;
         position: absolute;
         top: 100%;
         left: -100%;
@@ -103,8 +111,7 @@
         transition: left 250ms;
 
         box-shadow: 0 0.1rem 0.1rem $primary-1;
-        border-top: 1px solid $primary-2;
-        border-bottom: 1px solid $primary-2;
+        border-top: 2px solid $primary-2;
         padding: 1rem;
         width: 100%;
 
@@ -116,7 +123,7 @@
             display: flex;
         }
 
-        @include tablet {
+        @include tablet-and-above {
             position: relative;
             top: unset;
             left: unset;
@@ -134,7 +141,32 @@
     }
 
     .hamburger {
-        @include tablet {
+        @include tablet-and-above {
+            display: none;
+        }
+    }
+
+    .dim {
+        z-index: 1;
+        position: absolute;
+        top: 100%;
+        left: 0;
+
+        opacity: 0;
+        visibility: hidden;
+
+        transition: opacity 150ms, visibility 150ms;
+
+        width: 100%;
+        height: calc(100vh - 100%);
+        background-color: rgba($primary-1, 50%);
+
+        &.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @include tablet-and-above {
             display: none;
         }
     }

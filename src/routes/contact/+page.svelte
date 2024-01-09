@@ -74,7 +74,7 @@
         justify-content: space-between;
         gap: 1.5rem;
 
-        @include tablet {
+        @include tablet-and-above {
             flex-direction: row;
             gap: 2rem;
         }

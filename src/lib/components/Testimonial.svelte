@@ -18,7 +18,7 @@
         border: 1px solid black;
         padding: calc(sqrt(2) * 1rem);
 
-        @include tablet {
+        @include tablet-and-above {
             margin: 0;
         }
     }

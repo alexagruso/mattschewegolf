@@ -24,7 +24,7 @@
         text-transform: lowercase;
         color: $primary-6;
 
-        @include tablet {
+        @include tablet-and-above {
             &::before {
                 content: "";
 
